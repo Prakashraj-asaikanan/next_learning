@@ -1,6 +1,12 @@
-/** @type {import('next').NextConfig} */
+var customConfig = require('./webpack.custom.js');
 const nextConfig = {
-  reactStrictMode: true,
-}
+  webpack: (config) => {
+    // Add your custom webpack config here
 
-module.exports = nextConfig
+    config = customConfig(config, true);
+
+    return config;
+  },
+};
+
+module.exports = nextConfig;

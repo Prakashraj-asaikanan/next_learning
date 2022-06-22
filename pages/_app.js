@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import { func, node, object, oneOfType } from 'prop-types';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+MyApp.propTypes = {
+  Component: oneOfType([func, node]).isRequired,
+  pageProps: object,
+};
+
+export default MyApp;
