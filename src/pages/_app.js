@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import '../../styles/globals.css';
 import { func, node, object, oneOfType } from 'prop-types';
 
 function MyApp({ Component, pageProps }) {
