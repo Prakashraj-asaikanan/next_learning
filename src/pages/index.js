@@ -1,7 +1,5 @@
-import BookAppointment from "./bookappointment/BookAppointment";
+import Appointment from './appointment';
 
 export default function Home() {
-  return (
-      <BookAppointment />
-  );
+  return <Appointment />;
 }

@@ -1,0 +1,41 @@
+@import "@Assets/styles/Variables.scss";
+@import "@Assets/styles/Colors.scss";
+@import "@Assets/styles/Mixins.scss";
+
+.doc-modal {
+  position: fixed;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  z-index: $zindex-modal;
+
+  &-wrapper {
+    position: absolute;
+    padding: 24px;
+  }
+
+  &-content {
+    margin: 200px 0;
+    position: relative;
+    padding: 16px;
+    z-index: $zindex-modal-content;
+    outline: 0;
+    background-color: $white;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  &-overlay {
+    background-color: $overlay-dark;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: $zindex-modal;
+  }
+}

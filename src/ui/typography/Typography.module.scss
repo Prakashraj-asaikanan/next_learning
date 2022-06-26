@@ -1,0 +1,59 @@
+@import '@Assets/styles/Variables.scss';
+@import '@Assets/styles/Mixins.scss';
+@import '@Assets/styles/Colors.scss';
+
+.tag_h1 {
+  @include include-heading-styles;
+}
+
+.tag_h2 {
+  @include include-heading-styles(h2);
+}
+
+.tag_h3 {
+  @include include-heading-styles(h3);
+}
+
+.tag_h4 {
+  @include include-heading-styles(h4);
+}
+
+.tag_h5 {
+  @include include-heading-styles(h5);
+}
+
+.tag_p {
+  font-size: 14px;
+
+  @include media-break-point-up(sm) {
+    font-size: 16px;
+  }
+}
+
+.tag_small {
+  font-size: 12px;
+
+  @include media-break-point-up(sm) {
+    font-size: 14px;
+  }
+}
+
+.tag_h1,
+.tag_h2,
+.tag_h3,
+.tag_h4,
+.tag_h5,
+.tag_p,
+.tag_small {
+  letter-spacing: 0.32px;
+}
+
+.theme {
+  &-error {
+    color: $error-rust;
+  }
+
+  &-warning {
+    color: $error-red;
+  }
+}

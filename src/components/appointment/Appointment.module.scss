@@ -1,0 +1,46 @@
+@import "@Assets/styles/Colors.scss";
+
+.bookappointment {
+  padding: 0 30px;
+  &-header {
+    h1 {
+      margin: 20px 0;
+    }
+    p {
+      font-size: 20px;
+      margin-top: 0;
+      color: $very-light-gray;
+    }
+  }
+  &-forminfo {
+    margin-top: 30px;
+    label {
+      font-size: 18px;
+    }
+    &-dashline {
+      border: 1px dashed $very-light-gray;
+      margin: 50px auto 10px auto;
+      width: 90%;
+    }
+    &-dropdown {
+      padding: 10px;
+      border: 1px solid $warm-light-gray;
+      width: 100%;
+      box-sizing: border-box;
+      &-usericon {
+        width: 65px;
+        height: 65px;
+      }
+      &-drdetail {
+        margin-left: 15px;
+      }
+      &-drcon {
+        align-items: center;
+        border-bottom: 1px solid $very-light-gray;
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

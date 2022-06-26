@@ -10,7 +10,8 @@
       "@Assets/*": ["src/assets/*"],
       "@Components/*": ["src/components/*"],
       "@Utils/*": ["src/utils/*"],
-      "@Hooks/*": ["src/hooks/*"]
+      "@Hooks/*": ["src/hooks/*"],
+      "@UI/*": ["src/ui/*"]
     },
     "strict": true,
     "target": "es2017"
