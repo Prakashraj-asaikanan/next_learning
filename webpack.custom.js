@@ -4,7 +4,10 @@ module.exports = (config, isDev) => {
     Array.isArray(moduleLoader.use) &&
       moduleLoader.use.forEach((l) => {
         if (l?.loader?.includes('css-loader') && !l?.loader?.includes('postcss-loader')) {
-          delete l.options.modules.getLocalIdent;
+          // console.log("l.options.modules", l.options.modules.getLocalIdent)
+          // if(l.options.modules.getLocalIdent) {
+          //   delete l.options.modules.getLocalIdent;
+          // }
 
           l.options = {
             ...l.options,

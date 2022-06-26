@@ -8,7 +8,9 @@
     "moduleResolution": "node",
     "paths": {
       "@Assets/*": ["src/assets/*"],
-      "@Components/*": ["src/components/*"]
+      "@Components/*": ["src/components/*"],
+      "@Utils/*": ["src/utils/*"],
+      "@Hooks/*": ["src/hooks/*"]
     },
     "strict": true,
     "target": "es2017"
