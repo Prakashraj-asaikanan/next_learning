@@ -7,12 +7,22 @@ import Typography from '@UI/typography/Typography';
 import Modal from '@UI/modal/Modal';
 import Image from '@UI/image/Image';
 import Icon from '@UI/icon/Icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { SessionInfoSelector } from 'src/redux/reducers/SessionInfo';
+import { updateSessionInfo } from 'src/redux/reducers/SessionInfo';
 import styles from './Login.module.scss';
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [otpModal, setOtpModal] = useState(false);
+  const dispatch = useDispatch();
+
+  const { isSessionLoading } = useSelector(SessionInfoSelector);
+
+  useEffect(() => {
+    dispatch(updateSessionInfo());
+  }, [dispatch]);
 
   const changeotpModal = () => {
     setShowModal(false);
@@ -46,7 +56,7 @@ const Login = () => {
           </Row>
         </Col>
       </Row>
-      {showModal && (
+      {showModal && !isSessionLoading && (
         <Modal
           showModal={true}
           className={styles.loginModal}
