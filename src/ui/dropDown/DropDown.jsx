@@ -1,5 +1,4 @@
 import watchOuterClicks from '@Hooks/WatchOuterClicks';
-import { handleFocusInAndOut } from '@Utils/ADA';
 import { bool, node, oneOfType, string } from 'prop-types';
 import { useState, useEffect } from 'react';
 import styles from './DropDown.module.scss';
@@ -9,14 +8,7 @@ import DropDownItem from './dropDownItem/DropDownItem';
 
 const { Provider } = DropDownContext;
 
-const DropDown = ({
-  className,
-  children,
-  toggleOnHover,
-  toggleOnEnter,
-  toggleOnEscape,
-  toggleOnBlur,
-}) => {
+const DropDown = ({ className, children, toggleOnHover, toggleOnBlur }) => {
   const [collapse, setCollapse] = useState(false);
 
   const toggleDropDown = () => setCollapse(!collapse);
@@ -24,10 +16,6 @@ const DropDown = ({
   const handleOuterClick = () => setCollapse(false);
 
   const ref = watchOuterClicks(!toggleOnHover && collapse, handleOuterClick);
-
-  const showDropdownOnEnter = () => {
-    setCollapse(true);
-  };
 
   const closeDropdownOnBlur = () => {
     setCollapse(false);
@@ -55,13 +43,7 @@ const DropDown = ({
         {...(!toggleOnHover && { onClick: toggleDropDown })}
         {...(toggleOnHover && { onMouseEnter: toggleDropDown })}
         {...(toggleOnHover && { onMouseLeave: toggleDropDown })}
-        {...(toggleOnEnter && {
-          onKeyUp: handleFocusInAndOut.bind(this, [showDropdownOnEnter, () => setCollapse(false)]),
-        })}
         {...(toggleOnBlur && { onBlur: closeDropdownOnBlur })}
-        {...(toggleOnEscape && {
-          onKeyUp: handleFocusInAndOut.bind(this, [null, () => setCollapse(false)]),
-        })}
       >
         {children}
       </div>

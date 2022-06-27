@@ -1,0 +1,140 @@
+@import "@Assets/styles/Colors.scss";
+@import "@Assets/styles/Mixins.scss";
+
+.login {
+  height: 600px;
+  @include media-break-point-up(sm) {
+    height: 650px;
+    padding: 0px 10px;
+  }
+  @include media-break-point-up(md) {
+    height: 650px;
+    padding: 0px 20px;
+  }
+  &-hidecolumn {
+    @include media-break-point-down(sm) {
+      display: none;
+    }
+  }
+  &-box {
+    width: 550px;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    @include media-break-point-down(sm) {
+      width: 300px;
+      height: 460px;
+    }
+    @include media-break-point-up(sm) {
+      width: 350px;
+      height: 450px;
+    }
+    @include media-break-point-up(md) {
+      width: 400px;
+    }
+  }
+  &-icon {
+    width: 25px;
+    height: 25px;
+    margin: 40px 0px;
+  }
+  &-text {
+    margin: 42px 20px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  &-modal {
+    padding: 25px;
+    &-form {
+      width: 400px;
+      margin: auto;
+      @include media-break-point-down(sm) {
+        width: 250px;
+      }
+      @include media-break-point-up(sm) {
+        width: 300px;
+      }
+      @include media-break-point-up(md) {
+        width: 300px;
+      }
+      &-options {
+        display: flex;
+        flex-direction: row;
+        @include media-break-point-down(sm) {
+          flex-direction: column;
+        }
+      }
+    }
+    
+    &-icon {
+      width: 15px;
+    }
+    &-title {
+      h2 {
+        font-style: normal;
+      }
+      span {
+        color: $warm-gray;
+      }
+    }
+    &-rememberme {
+      display: flex;
+      flex-direction: row;
+      margin: 10px 0px;
+
+      input[type='checkbox'] {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    &-checkbox {
+      width: 25px !important;
+      &-spancheck {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+    &-input {
+      padding: 10px 0px;
+      span {
+        padding-bottom: 10px;
+        font-weight: 600;
+      }
+      button {
+        width: 100%;
+        margin-top: 30px;
+        background-color: $crayola;
+      }
+      &-footer {
+        padding: 10px;
+        color: $warm-gray;
+        a {
+          color: $crayola;
+          font-weight: 700;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+  &-forgotpassword {
+    justify-content: right;
+    margin: 10px 0px;
+    @include media-break-point-down(sm) {
+      justify-content: left;
+      margin: 10px 5px;
+    }
+  }
+  &-button {
+    width: 300px;
+    min-height: 50px;
+    font-size: 18px;
+    border-radius: 5px;
+    &-container {
+      margin: 10px 0px;
+    }
+    @include media-break-point-down(sm) {
+      width: 250px;
+    }
+  }
+}
