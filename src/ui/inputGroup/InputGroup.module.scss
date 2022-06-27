@@ -10,14 +10,10 @@
       margin: 0;
     }
 
-    >div {
-      border-radius: 3px;
-    }
-
     input {
       padding: 10px 15px;
       border-radius: 3px;
-      height: 40px;
+      height: 44px;
     }
 
     &-row {
@@ -71,6 +67,25 @@
           margin-left: -10px;
         }
       }
+    }
+  }
+  &-content {
+    height: 44px;
+    color: $cool-gray;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    width: 30%;
+    border: 1px solid $very-light-gray;
+    border-right: 0px;
+    border-radius: 0px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    span {
+      border-right: 1px solid $lavender-gray;
+      height: 25px;
+      padding-left: 14px;
     }
   }
 }

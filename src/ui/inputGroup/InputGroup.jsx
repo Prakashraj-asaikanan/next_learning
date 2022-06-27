@@ -1,4 +1,5 @@
-import { oneOf, shape, string } from 'prop-types';
+import Typography from '@UI/typography/Typography';
+import { bool, oneOf, shape, string } from 'prop-types';
 import { useEffect, useState } from 'react';
 import Button from '../button/Button';
 import Icon from '../icon/Icon';
@@ -6,7 +7,14 @@ import Input from '../input/Input';
 import { Row } from '../layout';
 import styles from './InputGroup.module.scss';
 
-const InputGroup = ({ iconProps, btnProps, flexDirection, className, inputProps }) => {
+const InputGroup = ({
+  iconProps,
+  btnProps,
+  flexDirection,
+  className,
+  inputProps,
+  inputContent,
+}) => {
   const [textValue, setTextValue] = useState(inputProps.value);
   const prefix = Object.keys(iconProps)?.length ? 'icon' : 'button';
 
@@ -31,13 +39,22 @@ const InputGroup = ({ iconProps, btnProps, flexDirection, className, inputProps 
   };
 
   const renderChildren = () => {
-    if (Object.keys(iconProps)?.length) {
-      return <Icon {...iconProps} onClick={handleClick} />;
+    if (!inputContent) {
+      if (Object.keys(iconProps)?.length) {
+        return <Icon {...iconProps} onClick={handleClick} />;
+      } else {
+        return (
+          <Button {...btnProps} onClick={handleClick}>
+            {btnProps.btnlabel}
+          </Button>
+        );
+      }
     } else {
       return (
-        <Button {...btnProps} onClick={handleClick}>
-          {btnProps.btnlabel}
-        </Button>
+        <Row justifyContent="center" alignItems="center" className={styles.inputGroupContent}>
+          <Typography variant="p"> +91 </Typography>
+          <span></span>
+        </Row>
       );
     }
   };
@@ -68,6 +85,7 @@ InputGroup.propTypes = {
   iconProps: shape({}),
   inputProps: shape({}),
   className: string,
+  inputContent: bool,
 };
 
 // Declare default props
@@ -79,6 +97,7 @@ InputGroup.defaultProps = {
   iconProps: {},
   inputProps: {},
   className: '',
+  inputContent: true,
 };
 
 // Export the component

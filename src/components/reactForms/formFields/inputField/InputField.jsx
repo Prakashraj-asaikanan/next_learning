@@ -1,4 +1,5 @@
 import Input from '@UI/input/Input';
+import InputGroup from '@UI/inputGroup/InputGroup';
 import Typography from '@UI/typography/Typography';
 import { func, object, string } from 'prop-types';
 import dynamic from 'next/dynamic';
@@ -14,7 +15,14 @@ const InputComp = ({ restProps, ...inputProps }) => {
     inputProps?.onBlur?.(e);
   };
 
-  return <Input {...restProps} {...inputProps} onBlur={handleOnBlur} />;
+  return restProps?.isInputGroup ? (
+    <InputGroup
+      {...restProps}
+      inputProps={{ ...inputProps, ...restProps.inputProps, onBlur: handleOnBlur }}
+    />
+  ) : (
+    <Input {...restProps} {...inputProps} onBlur={handleOnBlur} />
+  );
 };
 
 InputComp.propTypes = {
