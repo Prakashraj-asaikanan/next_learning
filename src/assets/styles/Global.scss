@@ -1,9 +1,9 @@
-@import './Variables.scss';
-@import './FontProximaNova.scss';
-@import './FontProximaNovaCon.scss';
-@import './FontProximaNovaExtCon.scss';
-@import './Colors.scss';
-@import './Mixins.scss';
+@import "./Variables.scss";
+@import "./FontProximaNova.scss";
+@import "./FontProximaNovaCon.scss";
+@import "./FontProximaNovaExtCon.scss";
+@import "./Colors.scss";
+@import "./Mixins.scss";
 
 html {
   scroll-behavior: smooth;
@@ -13,7 +13,7 @@ html {
 body {
   width: 100%;
   overflow-x: hidden;
-  font-family: $ProximaNova, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: $ProximaNova, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: $black;
   background: $white;
   position: relative;
@@ -43,22 +43,6 @@ header {
 *::before,
 *::after {
   box-sizing: border-box;
-}
-
-:global {
-  #eb-main {
-    min-height: 75vh;
-    max-width: 1920px;
-    margin: 0 auto;
-  }
-
-  div[class^='Snackbar_snackbar-wrapper'] {
-    z-index: $zindex-tooltip;
-  }
-
-  div[class^='pac-container'] {
-    z-index: $zindex-popover;
-  }
 }
 
 h1,
@@ -118,10 +102,4 @@ form {
 a,
 button {
   outline: none;
-}
-
-a:focus-visible,
-button:focus-visible,
-[tabindex='0']:focus-visible {
-  outline: 1px solid $tangerine-yellow;
 }

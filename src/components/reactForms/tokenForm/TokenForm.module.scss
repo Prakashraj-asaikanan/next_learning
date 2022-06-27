@@ -1,0 +1,28 @@
+@import "@Assets/styles/Colors.scss";
+
+.login {
+    &-input {
+        padding-top: 30px;
+        span {
+            padding-bottom: 10px;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 16px;
+        }
+        button {
+            width: 100%;
+            margin-top: 30px;
+            background-color: $crayola;
+            min-height: 44px;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 16px;
+
+            &:hover,
+            &:visited,
+            &:focus {
+                color: $white;
+            }
+        }
+    }
+}

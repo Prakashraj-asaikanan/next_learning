@@ -1,13 +1,14 @@
-import { useState } from 'react';
 import Logo from '@Assets/images/doclogo.jpg';
+import TokenForm from '@Components/reactForms/tokenForm/TokenForm';
+import OtpForm from '@Components/reactForms/otpForm/OtpForm';
 import Button from '@UI/button/Button';
 import { Row, Col } from '@UI/layout';
 import Typography from '@UI/typography/Typography';
-import styles from './Login.module.scss';
 import Modal from '@UI/modal/Modal';
-import Input from '@UI/input/Input';
 import Image from '@UI/image/Image';
 import Icon from '@UI/icon/Icon';
+import { useState } from 'react';
+import styles from './Login.module.scss';
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
@@ -18,10 +19,10 @@ const Login = () => {
     setOtpModal(!otpModal);
   };
 
-  const changeSetModal = () => {
-    setShowModal(!showModal);
-    setOtpModal(false);
-  };
+  // const changeSetModal = () => {
+  //   setShowModal(!showModal);
+  //   setOtpModal(false);
+  // };
 
   return (
     <>
@@ -33,7 +34,7 @@ const Login = () => {
               PG Clinic
             </Typography>
             <Row className={styles.loginButtonContainer} rowGap={20} justifyContent="center">
-              <Button onClick={changeSetModal} className={styles.loginButton}>
+              <Button onClick={changeotpModal} className={styles.loginButton}>
                 <Icon iconName="calendar" className={styles.loginButtonIcon} />
                 Book a Appointment
               </Button>
@@ -46,7 +47,11 @@ const Login = () => {
         </Col>
       </Row>
       {showModal && (
-        <Modal showModal={true} className={styles.loginModal}>
+        <Modal
+          showModal={true}
+          className={styles.loginModal}
+          handleBeforeClose={() => changeotpModal}
+        >
           <Modal.head>
             <Row className={styles.loginModalTitle} rowGap={5}>
               <Typography variant="h2"> Login with mobile number </Typography>
@@ -54,12 +59,7 @@ const Login = () => {
             </Row>
           </Modal.head>
           <Modal.body>
-            <Row className={styles.loginModalInput}>
-              <span>Mobile Number</span>
-              <Input label="Enter your mobile number" className={styles.loginModalInputBox} />
-
-              <Button onClick={changeotpModal}> Continue </Button>
-            </Row>
+            <TokenForm />
           </Modal.body>
         </Modal>
       )}
@@ -72,15 +72,7 @@ const Login = () => {
             </Row>
           </Modal.head>
           <Modal.body>
-            <Row className={styles.loginModalOtpInput} columnGap={10} rowGap={10}>
-              <Input type="number" className={styles.loginModalOtpInputItem} />
-              <Input type="number" className={styles.loginModalOtpInputItem} />
-              <Input type="number" className={styles.loginModalOtpInputItem} />
-              <Input type="number" className={styles.loginModalOtpInputItem} />
-              <Input type="number" className={styles.loginModalOtpInputItem} />
-              <Input type="number" className={styles.loginModalOtpInputItem} />
-              <Button> Verify </Button>
-            </Row>
+            <OtpForm />
           </Modal.body>
           <Modal.footer>
             <Typography variant="p" className={styles.loginModalOtpInputFooter}>

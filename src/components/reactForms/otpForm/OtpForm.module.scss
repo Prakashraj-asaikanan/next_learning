@@ -1,0 +1,33 @@
+@import "@Assets/styles/Colors.scss";
+
+.login {
+    &-otp {
+        &-input {
+            padding-top: 36px;
+            button {
+                width: 100%;
+                margin-top: 30px;
+                background-color: $crayola;
+                min-height: 44px;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 16px;
+                border-radius: 5px;
+
+                &:hover,
+                &:visited,
+                &:focus {
+                    color: $white;
+                }
+            }
+            &-item {
+                width: 36px;
+                border-radius: 5px;
+
+                input {
+                    min-height: 36px;
+                }
+            }
+        }
+    }
+}
