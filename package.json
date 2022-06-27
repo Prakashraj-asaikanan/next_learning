@@ -6,12 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "es-lint": "eslint . --ext .jsx,.js",
     "es-lint:fix": "eslint . --ext .jsx,.js --fix",
     "prettier": "prettier  --check \"**/*.{jsx,js,json}\"",
-    "prettier:fix": "prettier --check --write \"**/*.{jsx,js,json}\" "
+    "prettier:fix": "prettier --check --write \"**/*.{jsx,js,json}\" ",
+    "lint": "npm run es-lint && npm run prettier && npm run stylelint",
+    "lint:fix": "npm run es-lint:fix && npm run prettier:fix && npm run stylelint:fix"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "dependencies": {
     "@svgr/webpack": "^6.2.1",
     "css-loader": "^6.7.1",

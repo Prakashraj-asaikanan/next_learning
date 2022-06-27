@@ -79,7 +79,6 @@ const Login = () => {
               <Input type="number" className={styles.loginModalOtpInputItem} />
               <Input type="number" className={styles.loginModalOtpInputItem} />
               <Input type="number" className={styles.loginModalOtpInputItem} />
-
               <Button> Verify </Button>
             </Row>
           </Modal.body>

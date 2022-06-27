@@ -26,6 +26,11 @@
         &-icon {
             width: 27px;
         }
+        &:hover,
+        &:visited,
+        &:focus {
+            color: $white;
+        }
     }
     &-text {
         font-weight: 700;
@@ -70,6 +75,12 @@
                 font-weight: 700;
                 font-size: 16px;
                 line-height: 16px;
+
+                &:hover,
+                &:visited,
+                &:focus {
+                    color: $white;
+                }
             }
             &-footer {
                 padding: 10px;
@@ -107,6 +118,12 @@
                     font-size: 16px;
                     line-height: 16px;
                     border-radius: 5px;
+
+                    &:hover,
+                    &:visited,
+                    &:focus {
+                        color: $white;
+                    }
                 }
                 &-footer {
                     padding-top: 30px;
@@ -132,6 +149,9 @@
                     input {
                         max-height: 43px;
                     }
+                }
+                &-footer {
+                    width: 100%;
                 }
             }
         }
