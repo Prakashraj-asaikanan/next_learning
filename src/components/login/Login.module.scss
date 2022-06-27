@@ -39,7 +39,7 @@
         color: $metal;
     }
     &-modal {
-        padding: 25px;
+        padding: 23px;
         &-icon {
             width: 15px;
         }
@@ -94,8 +94,8 @@
             &-box {
                 width: 300px;
                 min-height: 44px;
-                background: $white;
-                border: 1px solid $lavender-gray;
+                // background: $white;
+                // border: 1px solid $lavender-gray;
                 border-radius: 5px;
             }
         }
@@ -108,22 +108,6 @@
                     font-weight: 500;
                     font-size: 13px;
                     line-height: 16px;
-                }
-                button {
-                    width: 100%;
-                    margin-top: 30px;
-                    background-color: $crayola;
-                    min-height: 44px;
-                    font-weight: 700;
-                    font-size: 16px;
-                    line-height: 16px;
-                    border-radius: 5px;
-
-                    &:hover,
-                    &:visited,
-                    &:focus {
-                        color: $white;
-                    }
                 }
                 &-footer {
                     padding-top: 30px;
@@ -141,14 +125,6 @@
                     background: $white;
                     border: 1px solid $lavender-gray;
                     border-radius: 5px;
-                }
-                &-item {
-                    width: 43px;
-                    border-radius: 5px;
-
-                    input {
-                        max-height: 43px;
-                    }
                 }
                 &-footer {
                     width: 100%;
