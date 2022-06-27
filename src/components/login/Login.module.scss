@@ -2,15 +2,18 @@
 
 .login {
     height: 500px;
-    &-icon {
-        width: 50px;
-        height: 50px;
+    &-logo {
+        width: 139px;
+        height: 148px;
     }
     &-button {
-        width: 250px;
-        min-height: 50px;
-        font-size: 18px;
+        width: 300px;
+        min-height: 60px;
+        font-size: 16px;
+        line-height: 19px;
+        font-weight: 700;
         border-radius: 5px;
+        column-gap: 15px;
         &-container {
             margin-top: 20px;
         }
@@ -20,10 +23,15 @@
         &:last-child {
             background-color: $gold;
         }
+        &-icon {
+            width: 27px;
+        }
     }
     &-text {
-        font-size: 20px;
-        font-weight: bold;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 29px;
+        color: $metal;
     }
     &-modal {
         padding: 25px;
@@ -33,29 +41,97 @@
         &-title {
             h2 {
                 font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 24px;
+                color: $metal;
             }
             span {
-                color: $warm-gray;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 16px;
+                color: $cool-gray;
+                max-width: 210px;
             }
         }
         &-input {
-            padding: 25px 0px;
+            padding-top: 30px;
             span {
                 padding-bottom: 10px;
-                font-weight: 600;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 16px;
             }
             button {
                 width: 100%;
                 margin-top: 30px;
                 background-color: $crayola;
+                min-height: 44px;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 16px;
             }
             &-footer {
                 padding: 10px;
-                color: $warm-gray;
+                color: $cool-gray;
                 a {
                     color: $crayola;
                     font-weight: 700;
                     text-decoration: underline;
+                }
+            }
+            &-box {
+                width: 300px;
+                min-height: 44px;
+                background: $white;
+                border: 1px solid $lavender-gray;
+                border-radius: 5px;
+            }
+        }
+        &-otp {
+            padding: 20px;
+            &-input {
+                padding-top: 36px;
+                span {
+                    padding-bottom: 10px;
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 16px;
+                }
+                button {
+                    width: 100%;
+                    margin-top: 30px;
+                    background-color: $crayola;
+                    min-height: 44px;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 16px;
+                    border-radius: 5px;
+                }
+                &-footer {
+                    padding-top: 30px;
+                    font-size: 15px;
+                    color: $cool-gray;
+                    a {
+                        color: $crayola;
+                        font-weight: 700;
+                        text-decoration: underline;
+                    }
+                }
+                &-box {
+                    width: 300px;
+                    min-height: 44px;
+                    background: $white;
+                    border: 1px solid $lavender-gray;
+                    border-radius: 5px;
+                }
+                &-item {
+                    width: 43px;
+                    border-radius: 5px;
+
+                    input {
+                        max-height: 43px;
+                    }
                 }
             }
         }
