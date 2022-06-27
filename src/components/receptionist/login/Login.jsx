@@ -1,9 +1,11 @@
+import LoginForm from '@Components/reactForms/loginForm/LoginForm';
 import Icon from '@UI/icon/Icon';
 import { Row, Col } from '@UI/layout';
 import Typography from '@UI/typography/Typography';
+// import Input from '@UI/input/Input';
+// import Button from '@UI/button/Button';
+
 import styles from './Login.module.scss';
-import Input from '@UI/input/Input';
-import Button from '@UI/button/Button';
 
 const RLogin = () => {
   return (
@@ -23,7 +25,7 @@ const RLogin = () => {
                   PG Clinic
                 </Typography>
               </Row>
-              <Col className={styles.loginModalForm}>
+              {/* <Col className={styles.loginModalForm}>
                 <Row className={styles.loginModalInput}>
                   <span>User ID</span>
                   <Input label="Enter your user id" />
@@ -46,7 +48,8 @@ const RLogin = () => {
               </Row>
               <Row className={styles.loginButtonContainer} rowGap={20} justifyContent="center">
                 <Button className={styles.loginButton}>Login</Button>
-              </Row>
+              </Row> */}
+              <LoginForm />
             </Col>
           </Row>
         </Col>
