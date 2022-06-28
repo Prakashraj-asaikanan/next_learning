@@ -1,32 +1,38 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import VerifyPhoneNumberService from 'src/services/verifyPhoneNumberService/VerifyPhoneNumber';
 
-export const initialState = {
-  isSessionLoading: true,
-};
+const initialState = {};
 
 const sessionSlice = createSlice({
   name: 'session',
   initialState,
   reducers: {
-    getSession: () => {
-      // TODO:- get session logic
+    verifyMobile: (state, action) => {
+      const { id, status, error } = action.payload;
+      state.login = { status, id: id, error: error };
     },
-    updateSession: (state, { payload }) => {
-      state.isSessionLoading = payload;
-      state.loading = false;
-      state.hasErrors = false;
+    verifyOtp: () => {
+      // TODO:- verify otp logic
     },
   },
 });
 
-export const { getSession, updateSession } = sessionSlice.actions;
+export const { verifyMobile, verifyOtp } = sessionSlice.actions;
 
 export const SessionInfoSelector = (state) => state.session;
 
 export default sessionSlice.reducer;
 
-export const updateSessionInfo = () => {
-  return async (dispatch) => {
-    dispatch(updateSession(false));
-  };
-};
+export const verifyMobileNumber = createAsyncThunk(
+  'login/verifymobilenumber',
+  async (data, { dispatch }) => {
+    try {
+      const response = await VerifyPhoneNumberService.invoke(data);
+      if (response) {
+        dispatch(verifyMobile(response?.payload));
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+);

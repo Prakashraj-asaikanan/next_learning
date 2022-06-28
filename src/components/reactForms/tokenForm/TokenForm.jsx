@@ -1,12 +1,16 @@
 import InputField from '@Components/reactForms/formFields/inputField/InputField';
+import { verifyMobileNumber } from '@Redux/reducers/SessionInfo';
 import Button from '@UI/button/Button';
 import { Row } from '@UI/layout';
+import { useDispatch } from 'react-redux';
 import { Form } from 'react-final-form';
 import styles from './TokenForm.module.scss';
 
 const TokenForm = () => {
-  const onSubmit = async ({ emailAddress, password }) => {
-    onSubmit?.(emailAddress, password);
+  const dispatch = useDispatch();
+
+  const onSubmit = (values) => {
+    dispatch(verifyMobileNumber(values));
   };
 
   return (
@@ -18,14 +22,16 @@ const TokenForm = () => {
             <Row className={styles.loginInput}>
               <span>Mobile Number</span>
               <InputField
-                name="emailAddress"
+                name="phoneNumber"
                 isInputGroup
                 flexDirection="row-reverse"
                 className={styles.loginInputBox}
                 inputProps={{ placeholder: 'Enter your mobile number' }}
               />
 
-              <Button isProcessing={submitting}>Continue</Button>
+              <Button action="submit" isProcessing={submitting}>
+                Continue
+              </Button>
             </Row>
           </Row>
         </form>
