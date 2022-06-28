@@ -7,32 +7,22 @@ import Typography from '@UI/typography/Typography';
 import Modal from '@UI/modal/Modal';
 import Image from '@UI/image/Image';
 import Icon from '@UI/icon/Icon';
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { SessionInfoSelector } from 'src/redux/reducers/SessionInfo';
-import { updateSessionInfo } from 'src/redux/reducers/SessionInfo';
+import { useState } from 'react';
 import styles from './Login.module.scss';
 
 const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [otpModal, setOtpModal] = useState(false);
-  const dispatch = useDispatch();
 
-  const { isSessionLoading } = useSelector(SessionInfoSelector);
-
-  useEffect(() => {
-    dispatch(updateSessionInfo());
-  }, [dispatch]);
-
-  const changeotpModal = () => {
-    setShowModal(false);
-    setOtpModal(!otpModal);
-  };
-
-  // const changeSetModal = () => {
-  //   setShowModal(!showModal);
-  //   setOtpModal(false);
+  // const changeotpModal = () => {
+  //   setShowModal(false);
+  //   setOtpModal(!otpModal);
   // };
+
+  const changeSetModal = () => {
+    setShowModal(!showModal);
+    setOtpModal(false);
+  };
 
   return (
     <>
@@ -44,7 +34,7 @@ const Login = () => {
               PG Clinic
             </Typography>
             <Row className={styles.loginButtonContainer} rowGap={20} justifyContent="center">
-              <Button onClick={changeotpModal} className={styles.loginButton}>
+              <Button onClick={changeSetModal} className={styles.loginButton}>
                 <Icon iconName="calendar" className={styles.loginButtonIcon} />
                 Book a Appointment
               </Button>
@@ -56,11 +46,11 @@ const Login = () => {
           </Row>
         </Col>
       </Row>
-      {showModal && !isSessionLoading && (
+      {showModal && (
         <Modal
           showModal={true}
           className={styles.loginModal}
-          handleBeforeClose={() => changeotpModal}
+          handleBeforeClose={() => changeSetModal}
         >
           <Modal.head>
             <Row className={styles.loginModalTitle} rowGap={5}>

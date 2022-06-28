@@ -21,7 +21,9 @@ const OtpForm = () => {
             <InputField type="number" className={styles.loginOtpInputItem} />
             <InputField type="number" className={styles.loginOtpInputItem} />
             <InputField type="number" className={styles.loginOtpInputItem} />
-            <Button isProcessing={submitting}>Verify</Button>
+            <Button action="submit" isProcessing={submitting}>
+              Verify
+            </Button>
           </Row>
         </form>
       )}
