@@ -1,0 +1,11 @@
+@import "@Assets/styles/Mixins";
+
+.home {
+  &-container {
+    padding: 25px 25px;
+    @include media-break-point-up(sm) {
+      padding: 25px 5px;
+      max-width: calc(100% - 65px);
+    }
+  }
+}

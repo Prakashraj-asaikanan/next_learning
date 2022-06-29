@@ -43,7 +43,12 @@ const LoginForm = ({ btnProps, className, handleForgetPasswordClick, loginButton
                   Remember me
                 </Typography>
               </Row>
-              <LinkButton onClick={handleForgetPasswordClick} className={styles.LoginForgotpassword}>Forgot Password?</LinkButton>
+              <LinkButton
+                onClick={handleForgetPasswordClick}
+                className={styles.LoginForgotpassword}
+              >
+                Forgot Password?
+              </LinkButton>
             </Row>
             <Button {...btnProps} onClick={handleSubmit} isProcessing={submitting}>
               {loginButtonLabel}
