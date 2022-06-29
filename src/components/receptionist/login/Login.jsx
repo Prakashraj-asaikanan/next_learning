@@ -1,13 +1,15 @@
 import LoginForm from '@Components/reactForms/loginForm/LoginForm';
-import Icon from '@UI/icon/Icon';
 import { Row, Col } from '@UI/layout';
 import Typography from '@UI/typography/Typography';
-// import Input from '@UI/input/Input';
-// import Button from '@UI/button/Button';
-
+import Image from '@UI/image/Image';
+import CompanyLogo from '@Assets/images/doclogo.jpg';
 import styles from './Login.module.scss';
 
 const RLogin = () => {
+  const buttonProps = {
+    className: styles.loginButton
+  }
+
   return (
     <>
       <Row justifyContent="space-around" alignItems="center" className={styles.login}>
@@ -20,7 +22,11 @@ const RLogin = () => {
           <Row justifyContent="center" className={styles.loginBox}>
             <Col className={styles.loginForm}>
               <Row justifyContent="center" flexDirection="row" alignItems="center" rowGap={25}>
-                <Icon iconName="star" className={styles.loginIcon} />
+                {/* <Icon iconName="star" className={styles.loginIcon} /> */}
+                <Image
+                  src={CompanyLogo.src}
+                  className={styles.loginCompanylogo}
+                />
                 <Typography variant="p" className={styles.loginText}>
                   PG Clinic
                 </Typography>
@@ -49,7 +55,10 @@ const RLogin = () => {
               <Row className={styles.loginButtonContainer} rowGap={20} justifyContent="center">
                 <Button className={styles.loginButton}>Login</Button>
               </Row> */}
-              <LoginForm />
+              <LoginForm
+                className={styles.loginModalForm}
+                btnProps={buttonProps}
+              />
             </Col>
           </Row>
         </Col>

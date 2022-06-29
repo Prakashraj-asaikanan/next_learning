@@ -1,0 +1,29 @@
+@import "@Assets/styles/Colors.scss";
+@import "@Assets/styles/Mixins.scss";
+
+.login {
+  &-modal {
+    &-box {
+      width: auto;
+    }
+    &-checkbox {
+      width: 25px !important;
+      &-spancheck {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+    &-form {
+      flex-direction: row;
+    }
+  }
+  &-forgotpassword {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 12px;
+    color: $metal;
+  }
+}

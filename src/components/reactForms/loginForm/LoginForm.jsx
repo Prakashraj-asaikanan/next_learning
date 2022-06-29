@@ -5,7 +5,11 @@ import { Row } from '@UI/layout';
 import LinkButton from '@UI/linkButton/LinkButton';
 import { func, shape, string } from 'prop-types';
 import { Form } from 'react-final-form';
+import Input from '@UI/input/Input';
 //import FieldValidator, { email, required } from '../helpers/FieldValidator';
+
+import styles from './LoginForm.module.scss';
+import Typography from '@UI/typography/Typography';
 
 const LoginForm = ({ btnProps, className, handleForgetPasswordClick, loginButtonLabel }) => {
   const onSubmit = async ({ emailAddress, password }) => {
@@ -19,19 +23,27 @@ const LoginForm = ({ btnProps, className, handleForgetPasswordClick, loginButton
         <form id="login_form" onSubmit={handleSubmit}>
           <Row className={className} flexDirection="column" rowGap={10}>
             <InputField
-              name="emailAddress"
-              label="Email address*"
+              name="userid"
+              label="User Id*"
               // validate={FieldValidator([required(), email()], 'email address')}
-              id="login_emailAddress"
+              id="login_userid"
+              placeholder="enter your user id"
             />
             <PasswordField
               name="password"
               label="Password*"
               // validate={FieldValidator([required()], 'password')}
               id="login_password"
+              placeholder="enter your password"
             />
-            <Row justifyContent="space-between" alignItems="flex-start">
-              <LinkButton onClick={handleForgetPasswordClick}>Forgot my password</LinkButton>
+            <Row justifyContent="space-between" flexDirection="row" rowGap={10}>
+              <Row flexDirection="row" className={styles.loginModalBox}>
+                <Input type="checkbox" className={styles.loginModalCheckbox} />
+                <Typography variant="span" className={styles.loginModalCheckboxSpancheck}>
+                  Remember me
+                </Typography>
+              </Row>
+              <LinkButton onClick={handleForgetPasswordClick} className={styles.LoginForgotpassword}>Forgot Password?</LinkButton>
             </Row>
             <Button {...btnProps} onClick={handleSubmit} isProcessing={submitting}>
               {loginButtonLabel}

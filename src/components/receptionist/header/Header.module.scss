@@ -1,0 +1,84 @@
+@import "@Assets/styles/Mixins.scss";
+
+@import "@Assets/styles/Colors.scss";
+
+.header {
+  height: 80px;
+  padding: 0 20px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+  &-icon {
+    width: 20px;
+    height: 20px;
+  }
+  &-text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 23px;
+    color: $metal;
+  }
+  &-profile {
+    text-align: right;
+  }
+  &-companylogo {
+    width: 65px;
+    height: 65px;
+  }
+  &-usericon {
+    width: 50px;
+    height: 50px;
+  }
+  &-profile {
+    &-box {
+      padding: 5px;
+      width: 250px;
+      @include media-break-point-down(sm) {
+        display: none;
+      }
+      &-name {
+        margin-left: 10px;
+        color: $metalic-blue;
+        font-weight: 600;
+      }
+      &-rec {
+        margin-left: 10px;
+        font-weight: 400;
+        color: $metalic-blue;
+      }
+    }
+    &-piccolumn {
+      max-width: 50px;
+    }
+  }
+  &-dropdown {
+    &-box {
+      max-width: 20px;
+    }
+    &-icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &-side {
+    &-bar {
+      &-box {
+        height: 70px;
+      }
+      &-active {
+        color: red;
+      }
+      &-icon {
+        justify-content: center;
+      }
+      &-text {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 16px;
+        color: $metalic-blue;
+      }
+    }
+  }
+}

@@ -11,26 +11,30 @@ import styles from './PasswordField.module.scss';
  * @returns {*}
  * @constructor
  */
-const PasswordField = ({ name, validate, ...restProps }) => {
+const PasswordField = ({ name, label, validate, ...restProps }) => {
   return (
-    <Field name={name} validate={validate}>
-      {({ input, meta }) => (
-        <div className={meta.touched && meta.error ? styles.error : ''}>
-          <Password inputProps={{ ...input, ...restProps }} />
-          {meta.touched && meta.error && (
-            <Typography variant="label" theme="error">
-              *{meta.error}
-            </Typography>
-          )}
-        </div>
-      )}
-    </Field>
+    <>
+      <label>{label}</label>
+      <Field name={name} validate={validate}>
+        {({ input, meta }) => (
+          <div className={meta.touched && meta.error ? styles.error : ''}>
+            <Password inputProps={{ ...input, ...restProps }} />
+            {meta.touched && meta.error && (
+              <Typography variant="label" theme="error">
+                *{meta.error}
+              </Typography>
+            )}
+          </div>
+        )}
+      </Field>
+    </>
   );
 };
 
 PasswordField.propTypes = {
   name: string.isRequired,
   validate: func,
+  label: string,
 };
 
 export default PasswordField;
