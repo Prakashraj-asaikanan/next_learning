@@ -1,46 +1,129 @@
 @import "@Assets/styles/Colors.scss";
+@import "@Assets/styles/Mixins.scss";
 
-.bookappointment {
-  padding: 0 30px;
+.appointment {
+  padding: 0 37px;
   &-header {
     h1 {
-      margin: 20px 0;
+      margin: 26px 0 10px 0;
+      @include font($ProximaNova, 24px, $metal, 700 , 29px);
     }
     p {
-      font-size: 20px;
       margin-top: 0;
-      color: $very-light-gray;
+      @include font($ProximaNova, 20px, $cool-gray, 400 , 18px);
     }
   }
-  &-forminfo {
-    margin-top: 30px;
+  &-form {
+    margin-top: 25px;
+    &-inputcontainer {
+      position: relative;
+      input {
+        // border-radius: 5px;
+        @include font($ProximaNova, 13px, $cool-gray, 600 , 16px);
+      }
+    }
     label {
-      font-size: 18px;
+      @include font($ProximaNova, 13px, $metal, 500 , 16px);
+      margin-bottom: 8px;
+    }
+    &-datepicker {
+      input {
+        text-align: center;
+      }
+      &-month {
+        border-radius: 5px 0 0 5px;
+      }
+      &-date {
+        border-radius: 0;
+      }
+      &-year {
+        border-radius: 0 5px 5px 0;
+      }
+    }
+    &-verifyicon {
+      position: absolute;
+      bottom: 15px;
+      right: -30px;
     }
     &-dashline {
       border: 1px dashed $very-light-gray;
-      margin: 50px auto 10px auto;
       width: 90%;
     }
     &-dropdown {
-      padding: 10px;
-      border: 1px solid $warm-light-gray;
+      border: 1px solid $lavender-gray;
+      border-radius: 5px;
       width: 100%;
       box-sizing: border-box;
-      &-usericon {
-        width: 65px;
-        height: 65px;
+      &-default {
+        padding: 10px;
+        @include font($ProximaNova, 13px, $cool-gray, 600 , 16px);
       }
-      &-drdetail {
+      &-content {
+        margin-top: 5px;
+        border-radius: 5px;
+        background: $white;
+        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.15);
+      }
+      &-verifyicon {
+        position: absolute;
+        bottom: 20px;
+        right: -30px;
+      }
+    }
+    &-docselected {
+      align-items: center;
+      padding: 10px;
+    }
+    &-doccontainer {
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid $very-light-gray;
+      &-usericon {
+        width: 43px;
+        height: 43px;
+      }
+      &-detail {
         margin-left: 15px;
       }
-      &-drcon {
-        align-items: center;
-        border-bottom: 1px solid $very-light-gray;
-        &:last-child {
-          border-bottom: none;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    &-childcontainer {
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #CDD1E0;
+      &-content {
+        p {
+          @include font($ProximaNova, 12px, $cool-gray, 400 , 15px);
+          margin-top: 5px;
         }
       }
+      &-btn {
+        padding: 10px 102px !important;
+        color: $crayola !important;
+        border-color: $crayola !important;
+      }
+    }
+    &-selectedchild {
+      align-items: center;
+      padding: 10px;
+    }
+    &-btn {
+      padding: 10px 106px !important;
+      margin-bottom: 10px;
+      @include font($ProximaNova, 13px, $white, 700 , 16px);
+    }
+  }
+  &-modal {
+    &-title {
+      h3 {
+        font-style: normal;
+      }
+      p {
+        @include font($ProximaNova, 13px, $cool-gray, 400 , 16px);
+      }
+      margin-bottom: 30px;
     }
   }
 }
