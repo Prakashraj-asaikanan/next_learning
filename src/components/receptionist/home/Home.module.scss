@@ -1,0 +1,89 @@
+@import "@Assets/styles/Colors.scss";
+@import "@Assets/styles/Mixins.scss";
+
+.home {
+  &-table {
+    height: 56px;
+    padding: 0 20px;
+    background-color: $crayola;
+    color: $white;
+    margin-top: 20px;
+    &-title {
+      line-height: 16px;
+      font-weight: 600;
+    }
+    &-status {
+      line-height: 140%;
+      font-weight: 400;
+    }
+    &-toggle {
+      margin-left: 20px
+    }
+    &-footer {
+      margin: 20px 0;
+      @include media-break-point-down(sm) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+      &-button {
+        &:first-child {
+          background-color: $red;
+          border-radius: 10px;
+          @include media-break-point-down(sm) {
+            width: 100px;
+            margin-top: 20px;
+          }
+        }
+        &-icon {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+  &-breadcumb{
+    color: $topaz;
+  }
+  &-modal {
+    width: 500px !important;
+    padding: 40px;
+    margin-top: 75px ;
+    @include media-break-point-down(sm) {
+      width: 300px !important;
+      margin-top: 40px !important;
+    }
+    &-box {
+      width: 500px;
+    }
+    &-icon {
+      width: 200px;
+      height: 200px;
+    }
+    &-text {
+      text-align: center;
+      font-weight: 600;
+      line-height: 16px;
+      color: $metalic-blue;
+    }
+    &-footer {
+
+      &-box {
+        margin-top: 20px;
+      }
+      &-button {
+        &:first-child {
+          width: 180px;
+          background-color: $white ;
+          color: $black ;
+          border: 1px solid $black ;
+          margin: 10px;
+        }
+        &:last-child {
+          width: 180px;
+          margin: 10px;
+          background-color: $crayola ;
+          color: $white ;
+        }
+      }
+    }
+  }
+}
