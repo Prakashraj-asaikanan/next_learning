@@ -37,13 +37,13 @@ export default function TemporaryDrawer() {
     >
       <List>
         {['Home', 'Doctor'].map((text, index) => (
-          <ListItem key={text} disablePadding className={styles.headerSideBarBox}>
-            <ListItemButton>
+          <ListItem key={index} disablePadding className={styles.headerSideBarBox}>
+            <ListItemButton component="a" href={`/receptionist/${text.toLowerCase()}`}>
               <ListItemIcon className={styles.headerSideBarIcon}>
-                { text === 'Home' && <Icon iconName='home' className={styles.headerSideBarActive}/> }
-                { text === 'Doctor' && <Icon iconName='doctor'/> }
+                {text === 'Home' && <Icon iconName="home" className={styles.headerSideBarActive} />}
+                {text === 'Doctor' && <Icon iconName="doctor" />}
               </ListItemIcon>
-              <ListItemText primary={text} className={styles.headerSideBarText}/>
+              <ListItemText primary={text} className={styles.headerSideBarText} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -55,27 +55,21 @@ export default function TemporaryDrawer() {
   return (
     <React.Fragment key="left">
       <Row className={styles.header} justifyContent="space-between" alignItems="center">
-        <Button onClick={toggleDrawer("left", true)}>
-          <Icon iconName="menu" className={styles.headerIcon}/>
+        <Button onClick={toggleDrawer('left', true)}>
+          <Icon iconName="menu" className={styles.headerIcon} />
         </Button>
         <Col>
           <Row alignItems="center" justifyContent="center">
-            <Image
-              src={CompanyLogo.src}
-              className={styles.headerCompanylogo}
-            />
+            <Image src={CompanyLogo.src} className={styles.headerCompanylogo} />
             <Typography variant="p" className={styles.headerText}>
               PG Clinic
             </Typography>
           </Row>
         </Col>
         <Paper variant="outlined" className={styles.headerProfileBox}>
-          <Row flexDirection="row" alignItems="center" >
+          <Row flexDirection="row" alignItems="center">
             <Col className={styles.headerProfilePiccolumn}>
-              <Image
-                src={UserIcon.src}
-                className={styles.headerUsericon}
-              />
+              <Image src={UserIcon.src} className={styles.headerUsericon} />
             </Col>
             <Col className={styles.headerProfileBox}>
               <Typography variant="p" className={styles.headerProfileBoxName}>
@@ -86,17 +80,13 @@ export default function TemporaryDrawer() {
               </Typography>
             </Col>
             <Col className={styles.headerDropdownBox}>
-              <Icon iconName="downarrow" className={styles.headerDropdownIcon}/>
+              <Icon iconName="downarrow" className={styles.headerDropdownIcon} />
             </Col>
           </Row>
         </Paper>
       </Row>
-      <Drawer
-        anchor="left"
-        open={state["left"]}
-        onClose={toggleDrawer("left", false)}
-      >
-        {list("left")}
+      <Drawer anchor="left" open={state['left']} onClose={toggleDrawer('left', false)}>
+        {list('left')}
       </Drawer>
     </React.Fragment>
   );

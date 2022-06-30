@@ -11,53 +11,114 @@ import Typography from '@UI/typography/Typography';
 import styles from './Table.module.scss';
 import Button from '@UI/button/Button';
 import { Row } from '@UI/layout';
+import Icon from '@UI/icon/Icon';
+import Toggle from '@UI/toggle/Toggle';
 
 const RTable = ({ columns, rows }) => {
-  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      backgroundColor: '#F7A955',
+      color: '#484964',
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 14,
+      fontSize: 12,
     },
   }));
-
   return (
     <Paper sx={{ width: '100%' }}>
-      <TableContainer sx={{ maxHeight: 600 }}>
+      <TableContainer sx={{ maxHeight: 500 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {columns?.map((column) => (
-                <StyledTableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </StyledTableCell>
-              ))}
+              {columns?.map((column) => {
+                return (
+                  <>
+                    {column?.id != 'flag' && (
+                      <StyledTableCell
+                        key={column.id}
+                        align={column.align}
+                        style={{ minWidth: column.minWidth }}
+                        className={column?.isSticky && styles.tableStickyColumn}
+                      >
+                        {column.label}
+                      </StyledTableCell>
+                    )}
+                  </>
+                );
+              })}
             </TableRow>
           </TableHead>
-          {rows.length > 0 ? (
+          {rows?.length > 0 ? (
             <TableBody>
               {rows.map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          <Typography variant={column?.variant ? column.variant : 'p'}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
-                          </Typography>
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
+                  <>
+                    <TableRow
+                      hover
+                      role="checkbox"
+                      tabIndex={-1}
+                      key={row.code}
+                      className={styles.table}
+                    >
+                      {columns?.map((column) => {
+                        const value = row[column.id];
+                        const flag = row['flag'];
+                        return (
+                          <>
+                            {column.id != 'flag' && (
+                              <TableCell
+                                key={column.id}
+                                align={column.align}
+                                className={column?.isSticky && styles.tableStickyRow}
+                              >
+                                {column.id === 'action' && flag === 0 && (
+                                  <Typography
+                                    variant={column?.variant ? column.variant : 'p'}
+                                    className={styles.tableTextSuccess}
+                                  >
+                                    <Icon iconName="success" />
+                                    &nbsp;
+                                    {column.format && typeof value === 'number'
+                                      ? column.format(value)
+                                      : value}
+                                  </Typography>
+                                )}
+                                {column.id === 'action' && flag === 1 && (
+                                  <Button>
+                                    <Icon iconName="login" className={styles.tableButtonIcon} />
+                                    &nbsp;&nbsp;Check In
+                                  </Button>
+                                )}
+                                {column.id === 'action' && flag === 2 && (
+                                  <Row
+                                    justifyContent="space-between"
+                                    alignItems="center"
+                                    className={styles.tableCheckbox}
+                                  >
+                                    <Typography variant="p" className={styles.tableUppercase}>
+                                      {value}
+                                    </Typography>
+                                    &nbsp;&nbsp;
+                                    <Toggle checked={value === 'active' ? true : false} />
+                                  </Row>
+                                )}
+                                {column.id != 'action' && (
+                                  <Typography
+                                    variant={column?.variant ? column.variant : 'p'}
+                                    className={`${styles.tableText}`}
+                                  >
+                                    {column.format && typeof value === 'number'
+                                      ? column.format(value)
+                                      : value}
+                                  </Typography>
+                                )}
+                              </TableCell>
+                            )}
+                          </>
+                        );
+                      })}
+                    </TableRow>
+                  </>
                 );
               })}
             </TableBody>

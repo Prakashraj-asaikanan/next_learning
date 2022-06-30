@@ -1,5 +1,54 @@
+@import "@Assets/styles/Mixins.scss";
+
 .table {
+  td {
+    padding: 10px 16px;
+    @include media-break-point-down(sm) {
+      padding: 10px 13px;
+    }
+  }
+  &-sticky {
+    &-column {
+      // position: sticky;
+      // left: 0;
+      // z-index: 1102;
+    }
+    &-row {
+      // position: sticky;
+      // left: 0;
+      // z-index: 1101;
+      @include media-break-point-down(sm) {
+        background-color: aliceblue;
+      }
+      @include media-break-point-down(lg) {
+        background-color: aliceblue;
+      }
+    }
+  }
   &-caption {
     text-align: center !important;
+  }
+  &-text {
+    font-size: 14px;
+    @include media-break-point-down(sm) {
+      font-size: 12px;
+    }
+    &-success {
+      color: green;
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+  &-button {
+    &-icon {
+      // height: 15px;
+      width: 15px;
+    }
+  }
+  &-uppercase {
+    text-transform: capitalize;
+  }
+  &-checkbox {
+    width: 110px;
   }
 }

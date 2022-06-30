@@ -19,7 +19,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: $red;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -31,7 +31,7 @@
   width: 20px;
   left: 4px;
   bottom: 3px;
-  background-color: white;
+  background-color: $white;
   -webkit-transition: .4s;
   transition: .4s;
 }

@@ -1,0 +1,65 @@
+{
+ "doctor_list": [
+    {
+      "doctor_name": "Akshay",
+      "specalization": 1234,
+      "hospital_name": "VC",
+      "mobile_no": 85267263215,
+      "email": "test@gmail.com",
+      "status": "active"
+    },
+    {
+      "doctor_name": "Venkat",
+      "specalization": 1234,
+      "hospital_name": "VC",
+      "mobile_no": 85267263215,
+      "email": "test@gmail.com",
+      "status": "inactive"
+    },
+    {
+      "doctor_name": "Venkat",
+      "specalization": 1234,
+      "hospital_name": "VC",
+      "mobile_no": 85267263215,
+      "email": "test@gmail.com",
+      "status": "inactive"
+    },
+    {
+      "doctor_name": "Venkat",
+      "specalization": 1234,
+      "hospital_name": "VC",
+      "mobile_no": 85267263215,
+      "email": "test@gmail.com",
+      "status": "inactive"
+    }
+  ],
+  "patient_token_list": [
+    {
+      "patient_name": "Akshay",
+      "patient_id": 1234,
+      "mobile_no": 85267263215,
+      "age": 22,
+      "doctor_name": "Dr.Krishna",
+      "token_number": 20,
+      "action": "Check In"
+    },
+    {
+      "patient_name": "Akshay",
+      "patient_id": 1234,
+      "mobile_no": 85267263215,
+      "age": 22,
+      "doctor_name": "Dr.Krishna",
+      "token_number": 20,
+      "action": "Consulted"
+    },
+    {
+      "patient_name": "Akshay V",
+      "patient_id": 1234,
+      "mobile_no": 85267263215,
+      "age": 22,
+      "doctor_name": "Dr.Krishna",
+      "token_number": 20,
+      "action": "Consulted"
+    }
+  ]
+}
