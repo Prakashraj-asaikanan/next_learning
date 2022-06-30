@@ -31,13 +31,28 @@
         text-align: center;
       }
       &-month {
-        border-radius: 5px 0 0 5px;
+        input {
+          border-radius: 5px 0 0 5px;
+          border-right: none;
+          &::after {
+            content: "|";
+          }
+        }
       }
       &-date {
-        border-radius: 0;
+        input {
+          border-left: none;
+          border-right: none;
+          &::after {
+            content: "|";
+          }
+        }
       }
       &-year {
-        border-radius: 0 5px 5px 0;
+        input {
+          border-left: none;
+          border-radius: 0 5px 5px 0;
+        }
       }
     }
     &-verifyicon {
