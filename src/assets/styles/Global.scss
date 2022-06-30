@@ -1,7 +1,5 @@
 @import "./Variables.scss";
-@import "./FontProximaNova.scss";
-@import "./FontProximaNovaCon.scss";
-@import "./FontProximaNovaExtCon.scss";
+@import "./FontInter.scss";
 @import "./Colors.scss";
 @import "./Mixins.scss";
 
@@ -13,7 +11,7 @@ html {
 body {
   width: 100%;
   overflow-x: hidden;
-  font-family: $ProximaNova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $Inter, Arial, sans-serif;
   color: $black;
   background: $white;
   position: relative;
@@ -84,7 +82,7 @@ a {
 input,
 select,
 textarea {
-  font-family: $ProximaNova;
+  font-family: $Inter;
   font-size: $baseMobileFontSize;
   line-height: 1.1;
   letter-spacing: $baseLetterSpacing;

@@ -187,7 +187,7 @@ $OPTIONS_TYPE: (
   text-align: center;
   white-space: nowrap;
   justify-content: center;
-  font-family: $ProximaNova;
+  font-family: $Inter;
 
   @include media-break-point-up(sm) {
     font-size: 16px;

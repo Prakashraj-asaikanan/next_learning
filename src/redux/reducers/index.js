@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import SessionInfoReducer from './SessionInfo';
+import LoginReducer from './Login';
 
-export default combineReducers({
-  SessionInfoReducer,
+const rootReducer = combineReducers({
+  LoginReducer,
 });
+
+export default rootReducer;

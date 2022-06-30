@@ -14,14 +14,13 @@ const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [otpModal, setOtpModal] = useState(false);
 
-  // const changeotpModal = () => {
-  //   setShowModal(false);
-  //   setOtpModal(!otpModal);
-  // };
+  const handleOtpModal = () => {
+    setOtpModal(!otpModal);
+    setShowModal(false);
+  };
 
-  const changeSetModal = () => {
+  const handleSetModal = () => {
     setShowModal(!showModal);
-    setOtpModal(false);
   };
 
   return (
@@ -46,7 +45,7 @@ const Login = () => {
               rowGap={20}
               justifyContent="center"
             >
-              <Button onClick={changeSetModal} className={styles.loginButton}>
+              <Button onClick={handleSetModal} className={styles.loginButton}>
                 <Icon iconName="calendar" className={styles.loginButtonIcon} />
                 Book a Appointment
               </Button>
@@ -59,11 +58,7 @@ const Login = () => {
         </Col>
       </Row>
       {showModal && (
-        <Modal
-          showModal={true}
-          className={styles.loginModal}
-          handleBeforeClose={() => changeSetModal}
-        >
+        <Modal showModal={true} className={styles.loginModal} handleAfterClose={handleSetModal}>
           <Modal.head>
             <Row className={styles.loginModalTitle} rowGap={5}>
               <Typography variant="h2"> Login with mobile number </Typography>
@@ -71,12 +66,16 @@ const Login = () => {
             </Row>
           </Modal.head>
           <Modal.body>
-            <TokenForm />
+            <TokenForm handleClick={handleOtpModal} />
           </Modal.body>
         </Modal>
       )}
       {otpModal && (
-        <Modal showModal={true} className={`${styles.loginModal} ${styles.loginModalOtp}`}>
+        <Modal
+          showModal={true}
+          className={`${styles.loginModal} ${styles.loginModalOtp}`}
+          handleAfterClose={handleOtpModal}
+        >
           <Modal.head>
             <Row className={styles.loginModalTitle} rowGap={5} flexDirection="column">
               <Typography variant="h2">OTP Verification </Typography>
@@ -84,7 +83,7 @@ const Login = () => {
             </Row>
           </Modal.head>
           <Modal.body>
-            <OtpForm />
+            <OtpForm handleClick={handleOtpModal} />
           </Modal.body>
           <Modal.footer>
             <Typography variant="p" className={styles.loginModalOtpInputFooter}>

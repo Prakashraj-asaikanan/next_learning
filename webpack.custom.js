@@ -25,7 +25,7 @@ module.exports = (config, isDev) => {
 
   // Load images, icons and custom file extensions
   config.module.rules.push({
-    test: /\.(ico|png|jp(e)g|webp|woff|woff2)$/,
+    test: /\.(ico|png|jp(e)g|webp|woff|woff2|tff)$/,
     issuer: /\.(js|jsx)$/,
     use: {
       loader: 'url-loader',
