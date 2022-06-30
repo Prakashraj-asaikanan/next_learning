@@ -20,7 +20,7 @@ const TokenForm = () => {
         <form id="login_form" onSubmit={handleSubmit}>
           <Row flexDirection="column" rowGap={10}>
             <Row className={styles.loginInput}>
-              <span>Mobile Number</span>
+              <span className={styles.loginInputLabel}>Mobile Number</span>
               <InputField
                 name="phoneNumber"
                 isInputGroup

@@ -28,12 +28,24 @@ const Login = () => {
     <>
       <Row justifyContent="center" alignItems="center" className={styles.login}>
         <Col>
-          <Row textAlign="center" flexDirection="column" alignItems="center" rowGap={25}>
+          <Row
+            textAlign="center"
+            justifyContent="center"
+            flexDirection="column"
+            alignItems="center"
+            rowGap={25}
+          >
             <Image src={Logo?.src} className={styles.loginLogo} />
             <Typography variant="p" className={styles.loginText}>
               PG Clinic
             </Typography>
-            <Row className={styles.loginButtonContainer} rowGap={20} justifyContent="center">
+            <Row
+              flexDirection="column"
+              alignItems="center"
+              className={styles.loginButtonContainer}
+              rowGap={20}
+              justifyContent="center"
+            >
               <Button onClick={changeSetModal} className={styles.loginButton}>
                 <Icon iconName="calendar" className={styles.loginButtonIcon} />
                 Book a Appointment
