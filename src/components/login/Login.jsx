@@ -14,15 +14,15 @@ const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [otpModal, setOtpModal] = useState(false);
 
-  const changeotpModal = () => {
-    setShowModal(false);
-    setOtpModal(!otpModal);
-  };
-
-  // const changeSetModal = () => {
-  //   setShowModal(!showModal);
-  //   setOtpModal(false);
+  // const changeotpModal = () => {
+  //   setShowModal(false);
+  //   setOtpModal(!otpModal);
   // };
+
+  const changeSetModal = () => {
+    setShowModal(!showModal);
+    setOtpModal(false);
+  };
 
   return (
     <>
@@ -34,7 +34,7 @@ const Login = () => {
               PG Clinic
             </Typography>
             <Row className={styles.loginButtonContainer} rowGap={20} justifyContent="center">
-              <Button onClick={changeotpModal} className={styles.loginButton}>
+              <Button onClick={changeSetModal} className={styles.loginButton}>
                 <Icon iconName="calendar" className={styles.loginButtonIcon} />
                 Book a Appointment
               </Button>
@@ -50,7 +50,7 @@ const Login = () => {
         <Modal
           showModal={true}
           className={styles.loginModal}
-          handleBeforeClose={() => changeotpModal}
+          handleBeforeClose={() => changeSetModal}
         >
           <Modal.head>
             <Row className={styles.loginModalTitle} rowGap={5}>

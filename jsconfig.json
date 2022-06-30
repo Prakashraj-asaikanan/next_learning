@@ -11,7 +11,10 @@
       "@Components/*": ["src/components/*"],
       "@Utils/*": ["src/utils/*"],
       "@Hooks/*": ["src/hooks/*"],
-      "@UI/*": ["src/ui/*"]
+      "@UI/*": ["src/ui/*"],
+      "@Configs/*": ["src/configs/*"],
+      "@Service/*": ["src/service/*"],
+      "@Redux/*": ["src/redux/*"]
     },
     "strict": true,
     "target": "es2017"
