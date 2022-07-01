@@ -6,11 +6,11 @@
   &-header {
     h1 {
       margin: 26px 0 10px 0;
-      @include font($ProximaNova, 24px, $metal, 700 , 29px);
+      @include font($Inter, 24px, $metal, 700, 29px);
     }
     p {
       margin-top: 0;
-      @include font($ProximaNova, 20px, $cool-gray, 400 , 18px);
+      @include font($Inter, 20px, $cool-gray, 400, 18px);
     }
   }
   &-form {
@@ -19,11 +19,11 @@
       position: relative;
       input {
         // border-radius: 5px;
-        @include font($ProximaNova, 13px, $cool-gray, 600 , 16px);
+        @include font($Inter, 13px, $cool-gray, 600, 16px);
       }
     }
     label {
-      @include font($ProximaNova, 13px, $metal, 500 , 16px);
+      @include font($Inter, 13px, $metal, 500, 16px);
       margin-bottom: 8px;
     }
     &-datepicker {
@@ -71,7 +71,7 @@
       box-sizing: border-box;
       &-default {
         padding: 10px;
-        @include font($ProximaNova, 13px, $cool-gray, 600 , 16px);
+        @include font($Inter, 13px, $cool-gray, 600, 16px);
       }
       &-content {
         margin-top: 5px;
@@ -107,10 +107,10 @@
     &-childcontainer {
       align-items: center;
       padding: 15px;
-      border-bottom: 1px solid #CDD1E0;
+      border-bottom: 1px solid #cdd1e0;
       &-content {
         p {
-          @include font($ProximaNova, 12px, $cool-gray, 400 , 15px);
+          @include font($Inter, 12px, $cool-gray, 400, 15px);
           margin-top: 5px;
         }
       }
@@ -127,7 +127,7 @@
     &-btn {
       padding: 10px 106px !important;
       margin-bottom: 10px;
-      @include font($ProximaNova, 13px, $white, 700 , 16px);
+      @include font($Inter, 13px, $white, 700, 16px);
     }
   }
   &-modal {
@@ -136,7 +136,7 @@
         font-style: normal;
       }
       p {
-        @include font($ProximaNova, 13px, $cool-gray, 400 , 16px);
+        @include font($Inter, 13px, $cool-gray, 400, 16px);
       }
       margin-bottom: 30px;
     }
