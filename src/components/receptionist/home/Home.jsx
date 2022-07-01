@@ -189,7 +189,11 @@ const RHome = () => {
           </Modal.body>
           <Modal.footer>
             <Row alignItems="center" justifyContent="center" className={styles.homeModalFooterBox}>
-              <Button onClick={handleStatus} className={styles.homeModalFooterButton} action="button">
+              <Button
+                onClick={handleStatus}
+                className={styles.homeModalFooterButton}
+                action="button"
+              >
                 Cancel
               </Button>
               <Button className={styles.homeModalFooterButton} action="button">
