@@ -8,7 +8,13 @@
  * 5. XX-Large devices (larger desktops, 1400px and up)
  */
 $BREAK_POINTS: sm, md, lg, xl, xxl;
-$BREAK_POINTS_MAP: (sm: 576, md: 768, lg: 992, xl: 1200, xxl: 1400);
+$BREAK_POINTS_MAP: (
+  sm: 576,
+  md: 768,
+  lg: 992,
+  xl: 1200,
+  xxl: 1400,
+);
 
 // Font configuration
 $baseMobileFontSize: 14px;
@@ -16,24 +22,62 @@ $baseDesktopFontSize: 16px;
 $baseLineHeight: 1.4;
 $baseFontWeight: 400;
 $baseLetterSpacing: 0.32px;
-$ProximaNova: 'proxima-nova';
-$FontProximaNovaCondensed: 'proxima-nova-con';
-$FontProximaNovaExtraCondensed: 'proxima-nova-ext-con';
+$Inter: "Inter";
 
 // Heading size options
 $OPTIONS_TYPE: (
-  "h1": (28px,italic,800,1.1,$FontProximaNovaCondensed,32px,42px),
-  'h2': (24px,italic,800,1.1,$FontProximaNovaCondensed,24px,32px),
-  'h3': (20px,italic,800,1.1,$FontProximaNovaCondensed,20px,24px),
-  'h4': (16px,normal,700,null,$ProximaNova,20px,null),
-  'h5': (14px,normal,700,null,$ProximaNova,16px,null)
+  "h1": (
+    28px,
+    normal,
+    800,
+    1.1,
+    $Inter,
+    32px,
+    42px,
+  ),
+  "h2": (
+    24px,
+    normal,
+    800,
+    1.1,
+    $Inter,
+    24px,
+    32px,
+  ),
+  "h3": (
+    20px,
+    normal,
+    800,
+    1.1,
+    $Inter,
+    20px,
+    24px,
+  ),
+  "h4": (
+    16px,
+    normal,
+    700,
+    null,
+    $Inter,
+    20px,
+    null,
+  ),
+  "h5": (
+    14px,
+    normal,
+    700,
+    null,
+    $Inter,
+    16px,
+    null,
+  ),
 );
 
 //z-index
-$zindex-dropdown:          1000;
-$zindex-fixed:             1010;
-$zindex-overlay:           1020;
-$zindex-modal:             1030;
-$zindex-modal-content:     1031;
-$zindex-popover:           1040;
-$zindex-tooltip:           1050;
+$zindex-dropdown: 1000;
+$zindex-fixed: 1010;
+$zindex-overlay: 1020;
+$zindex-modal: 1030;
+$zindex-modal-content: 1031;
+$zindex-popover: 1040;
+$zindex-tooltip: 1050;

@@ -81,7 +81,7 @@ const RHome = () => {
 
   useEffect(() => {
     handleRowData(MockData?.patient_token_list);
-    setTotalPage(10);
+    setTotalPage(1);
     setCUrrentPage(1);
   }, []);
 
@@ -189,7 +189,7 @@ const RHome = () => {
           </Modal.body>
           <Modal.footer>
             <Row alignItems="center" justifyContent="center" className={styles.homeModalFooterBox}>
-              <Button className={styles.homeModalFooterButton} action="button">
+              <Button onClick={handleStatus} className={styles.homeModalFooterButton} action="button">
                 Cancel
               </Button>
               <Button className={styles.homeModalFooterButton} action="button">

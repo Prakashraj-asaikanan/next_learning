@@ -50,14 +50,14 @@ const RTable = ({ columns, rows }) => {
           </TableHead>
           {rows?.length > 0 ? (
             <TableBody>
-              {rows.map((row) => {
+              {rows.map((row, index) => {
                 return (
                   <>
                     <TableRow
                       hover
                       role="checkbox"
                       tabIndex={-1}
-                      key={row.code}
+                      key={index}
                       className={styles.table}
                     >
                       {columns?.map((column) => {

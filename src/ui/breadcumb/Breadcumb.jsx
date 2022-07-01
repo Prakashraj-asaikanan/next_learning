@@ -4,7 +4,7 @@ import { array } from 'prop-types';
 const Breadcumb = ({ breadcumb_data }) => {
   return (
     <>
-      {breadcumb_data.map((bread_text, index) => {
+      {breadcumb_data?.map((bread_text, index) => {
         return (
           <>
             <Typography key={index} variant="p" className={bread_text?.className}>
