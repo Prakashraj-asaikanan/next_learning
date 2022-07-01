@@ -39,7 +39,7 @@ const LoginForm = ({ btnProps, className, handleForgetPasswordClick, loginButton
             <Row justifyContent="space-between" flexDirection="row" rowGap={10}>
               <Row flexDirection="row" className={styles.loginModalBox}>
                 <Input type="checkbox" className={styles.loginModalCheckbox} />
-                <Typography variant="span" className={styles.loginModalCheckboxSpancheck}>
+                <Typography variant="p" className={styles.loginModalCheckboxSpancheck}>
                   Remember me
                 </Typography>
               </Row>
