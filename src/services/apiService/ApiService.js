@@ -49,10 +49,9 @@ class Service {
     this.serviceProps = props;
   }
 
-  getRequestHeaders() {
+  getRequestHeaders(options) {
     //construct default headers
-    const headers = { ...DEFAULT_FETCH_CONFIG.headers };
-
+    const headers = { ...DEFAULT_FETCH_CONFIG.headers, ...options };
     return headers;
   }
 
@@ -76,7 +75,6 @@ class Service {
       message: eMessage || 'Request failed, Please try again later.',
       serviceResponse,
     };
-
     return Promise.reject(errResponse);
   }
 
@@ -114,7 +112,6 @@ class Service {
         payload: responsePayload,
         responseCode: response.status,
       };
-
       // resolve promise only if response ends with ok (status code in the range 200 - 299)
       // reject promise if status code >299 or if found any payload errors
       if (response.ok) {
@@ -141,7 +138,6 @@ class Service {
       ['max-age']: DEFAULT_FETCH_CONFIG.max_age,
       credentials: 'same-origin', // forward cookie details only if the request is made to same origin
     };
-
     if (isTypeOf(this.serviceProps.getRequestConfig, 'function')) {
       configs = this.serviceProps.getRequestConfig(data, configs) ?? configs;
     }

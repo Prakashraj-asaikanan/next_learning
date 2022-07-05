@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 import Breadcumb from '@UI/breadcumb/Breadcumb';
 import { Row, Col } from '@UI/layout';
 import styles from './Home.module.scss';
@@ -9,19 +9,34 @@ import Icon from '@UI/icon/Icon';
 import Button from '@UI/button/Button';
 import Table from '@UI/table/Table';
 import Pagination from '@UI/pagination/Pagination';
-import MockData from '../../../mock/data.json';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import {
+  getAllBookedPatient,
+  ReceptionistInfoSelector,
+  UpdateCheckInPatient,
+  closeHospitalForDay,
+} from '@Redux/reducers/ReceptionistInfo';
+import { useDispatch, useSelector } from 'react-redux';
 
 const RHome = () => {
+  const dispatch = useDispatch();
+  const receptionistReduxValue = useSelector(ReceptionistInfoSelector);
+
   const [statusModal, setStatusModal] = useState(false);
   const [row_data, setRowData] = useState([]);
   const [totalPage, setTotalPage] = useState();
   const [current_page, setCUrrentPage] = useState();
-
+  const [isLoading, setLoading] = useState(true);
+  const [opensnack, setOpenSnack] = useState(false);
+  const vertical = 'top';
+  const horizontal = 'right';
   const table_column = [
-    { id: 'patient_name', label: 'Patient Name', isactive: true, minWidth: 130, isSticky: true },
+    { id: 'name', label: 'Patient Name', isactive: true, minWidth: 130, isSticky: true },
     { id: 'patient_id', label: 'Patient ID', isactive: true, minWidth: 130 },
     {
-      id: 'mobile_no',
+      id: 'phone',
       label: 'Mobile Number',
       align: 'left',
       isactive: true,
@@ -42,7 +57,7 @@ const RHome = () => {
       minWidth: 130,
     },
     {
-      id: 'token_number',
+      id: 'token_no',
       label: 'Token Number',
       align: 'center',
       variant: 'h2',
@@ -67,40 +82,77 @@ const RHome = () => {
   const handleRowData = (rows) => {
     rows.map((data) => {
       const response = createdData(
-        data.patient_name,
+        data.name,
         data.patient_id,
-        data.mobile_no,
+        data.phone,
         data.age,
         data.doctor_name,
-        data.token_number,
-        data.action
+        data.token_no,
+        data.isCheckedIn,
+        data.isConsulted
       );
       setRowData((row_data) => [...row_data, response]);
     });
   };
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnack(false);
+  };
+
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  let query_params = {
+    hospital_id: '62bdda483835304c69be8ab3',
+    doctor_id: '62bdda703835304c69be8ab5',
+  };
+
   useEffect(() => {
-    handleRowData(MockData?.patient_token_list);
-    setTotalPage(1);
-    setCUrrentPage(1);
-  }, []);
+    setRowData([]);
+    if (!receptionistReduxValue?.bookedPatient) {
+      setLoading(true);
+      dispatch(getAllBookedPatient(query_params));
+    } else if (receptionistReduxValue?.bookedPatient) {
+      setTotalPage(1);
+      setCUrrentPage(1);
+      setLoading(false);
+      handleRowData(receptionistReduxValue?.bookedPatient);
+    }
+    if (
+      (receptionistReduxValue?.toaster_data?.status && !opensnack) ||
+      (receptionistReduxValue?.toaster_data?.status && !opensnack)
+    ) {
+      setOpenSnack(true);
+    }
+  }, [receptionistReduxValue]);
 
   const createdData = (
-    patient_name,
+    name,
     patient_id,
-    mobile_no,
+    phone,
     age,
     doctor_name,
-    token_number,
-    action
+    token_no,
+    isCheckedIn,
+    isConsulted
   ) => {
     let flag;
-    if (action === 'Check In') {
+    if (!isCheckedIn && !isConsulted) {
       flag = 1;
-    } else {
+    } else if (isCheckedIn && isConsulted) {
       flag = 0;
+    } else if (isCheckedIn && !isConsulted) {
+      flag = 1;
     }
-    return { patient_name, patient_id, mobile_no, age, doctor_name, token_number, action, flag };
+    return { name, patient_id, phone, age, doctor_name, token_no, isCheckedIn, isConsulted, flag };
+  };
+
+  const handleCheckinPatient = (patient) => {
+    dispatch(UpdateCheckInPatient({ ...patient, ...query_params }));
   };
 
   const breadCumb_data = [
@@ -124,6 +176,13 @@ const RHome = () => {
     setCUrrentPage(value);
   };
 
+  const handleClick = () => {
+    let recptionist_data = {
+      hospital_id: '62b1c8b9c1cd1f96db036253',
+    };
+    dispatch(closeHospitalForDay(recptionist_data));
+  };
+
   return (
     <>
       <Row>
@@ -144,14 +203,19 @@ const RHome = () => {
             <Toggle labelClassName={styles.homeTableToggle} handleClick={handleStatus} />
           </Typography>
         </Row>
-        <Table columns={table_column} rows={row_data} />
+        <Table
+          columns={table_column}
+          rows={row_data}
+          isLoading={isLoading}
+          handleUpdate={handleCheckinPatient}
+        />
         <Row
           className={styles.homeTableFooter}
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
         >
-          <Button className={styles.homeTableFooterButton}>
+          <Button className={styles.homeTableFooterButton} onClick={handleClick}>
             <Icon iconName="close_all" className={styles.homeTableFooterButtonIcon} />
             Close all
           </Button>
@@ -189,7 +253,11 @@ const RHome = () => {
           </Modal.body>
           <Modal.footer>
             <Row alignItems="center" justifyContent="center" className={styles.homeModalFooterBox}>
-              <Button onClick={handleStatus} className={styles.homeModalFooterButton} action="button">
+              <Button
+                onClick={handleStatus}
+                className={styles.homeModalFooterButton}
+                action="button"
+              >
                 Cancel
               </Button>
               <Button className={styles.homeModalFooterButton} action="button">
@@ -199,6 +267,23 @@ const RHome = () => {
           </Modal.footer>
         </Modal>
       )}
+      <Stack spacing={2} sx={{ width: '100%' }}>
+        <Snackbar
+          open={opensnack}
+          autoHideDuration={2000}
+          onClose={handleClose}
+          key={vertical + horizontal}
+          anchorOrigin={{ vertical, horizontal }}
+        >
+          <Alert
+            onClose={handleClose}
+            severity={receptionistReduxValue?.toaster_data?.status}
+            sx={{ width: '100%' }}
+          >
+            {receptionistReduxValue?.toaster_data?.message}
+          </Alert>
+        </Snackbar>
+      </Stack>
     </>
   );
 };
