@@ -6,6 +6,12 @@ const RestEndpoints = {
     VERIFY_PHONE: `${baseURI}/validation/verifyPhone`,
     VERIFY_OTP: `${baseURI}/validation/verifyOTP`,
   },
+  RECEPTIONIST: {
+    GET_ALL_PATIENT: `${baseURI}/hospital/getAllBookedToken`,
+    PATIENT_CHECK_IN: `${baseURI}/hospital/updateCheckin`,
+    CLOSE_HOSPITAL: `${baseURI}/hospital/closeHospital`,
+    UPDATE_TOKEN_STATUS: `${baseURI}/hospital/updateTokenStatus`,
+  },
 };
 
 export default RestEndpoints;

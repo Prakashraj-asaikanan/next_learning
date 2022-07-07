@@ -1,4 +1,4 @@
-import { array } from 'prop-types';
+import { array, bool, func } from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -14,7 +14,7 @@ import { Row } from '@UI/layout';
 import Icon from '@UI/icon/Icon';
 import Toggle from '@UI/toggle/Toggle';
 
-const RTable = ({ columns, rows }) => {
+const RTable = ({ columns, rows, isLoading, handleUpdate }) => {
   const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: '#F7A955',
@@ -71,20 +71,19 @@ const RTable = ({ columns, rows }) => {
                                 align={column.align}
                                 className={column?.isSticky && styles.tableStickyRow}
                               >
-                                {column.id === 'action' && flag === 0 && (
+                                {column.id === 'action' && (flag === 0 || flag === 3) && (
                                   <Typography
                                     variant={column?.variant ? column.variant : 'p'}
-                                    className={styles.tableTextSuccess}
+                                    className={
+                                      flag === 0 ? styles.tableTextSuccess : styles.tableTextDanger
+                                    }
                                   >
-                                    <Icon iconName="success" />
-                                    &nbsp;
-                                    {column.format && typeof value === 'number'
-                                      ? column.format(value)
-                                      : value}
+                                    <Icon iconName={flag === 0 ? 'success' : 'close_all'} />
+                                    &nbsp;{flag === 0 ? 'Consulted' : 'Not Consulted'}
                                   </Typography>
                                 )}
                                 {column.id === 'action' && flag === 1 && (
-                                  <Button>
+                                  <Button onClick={() => handleUpdate(row)}>
                                     <Icon iconName="login" className={styles.tableButtonIcon} />
                                     &nbsp;&nbsp;Check In
                                   </Button>
@@ -122,6 +121,10 @@ const RTable = ({ columns, rows }) => {
                 );
               })}
             </TableBody>
+          ) : isLoading ? (
+            <Typography variant="caption" className={styles.tableCaption}>
+              Loading
+            </Typography>
           ) : (
             <Typography variant="caption" className={styles.tableCaption}>
               No Data Found
@@ -137,6 +140,8 @@ const RTable = ({ columns, rows }) => {
 RTable.propTypes = {
   columns: array,
   rows: array,
+  isLoading: bool,
+  handleUpdate: func,
 };
 
 export default RTable;
