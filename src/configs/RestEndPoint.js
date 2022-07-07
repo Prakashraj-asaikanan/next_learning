@@ -10,6 +10,7 @@ const RestEndpoints = {
     GET_ALL_PATIENT: `${baseURI}/hospital/getAllBookedToken`,
     PATIENT_CHECK_IN: `${baseURI}/hospital/updateCheckin`,
     CLOSE_HOSPITAL: `${baseURI}/hospital/closeHospital`,
+    UPDATE_TOKEN_STATUS: `${baseURI}/hospital/updateTokenStatus`,
   },
 };
 

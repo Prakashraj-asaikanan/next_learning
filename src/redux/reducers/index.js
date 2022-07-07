@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import SessionInfoReducer from './SessionInfo';
+import LoginReducer from './Login';
 import ReceptionistReducer from './ReceptionistInfo';
 
-export default combineReducers({
-  SessionInfoReducer,
+const rootReducer = combineReducers({
+  LoginReducer,
   ReceptionistReducer,
 });
+
+export default rootReducer;

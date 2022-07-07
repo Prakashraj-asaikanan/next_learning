@@ -1,7 +1,7 @@
 @import "@Assets/styles/Colors.scss";
 
 .login {
-    height: 500px;
+    height: 100vh;
     &-logo {
         width: 139px;
         height: 148px;
@@ -50,13 +50,14 @@
                 font-size: 20px;
                 line-height: 24px;
                 color: $metal;
+                width: 100%;
             }
             span {
                 font-weight: 400;
                 font-size: 13px;
                 line-height: 16px;
                 color: $cool-gray;
-                max-width: 210px;
+                max-width: 234px;
             }
         }
         &-input {

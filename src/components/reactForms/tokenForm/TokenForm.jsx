@@ -1,16 +1,18 @@
 import InputField from '@Components/reactForms/formFields/inputField/InputField';
-import { verifyMobileNumber } from '@Redux/reducers/SessionInfo';
+import { verifyMobileNumber } from '@Redux/reducers/Login';
 import Button from '@UI/button/Button';
 import { Row } from '@UI/layout';
 import { useDispatch } from 'react-redux';
 import { Form } from 'react-final-form';
+import { func } from 'prop-types';
 import styles from './TokenForm.module.scss';
 
-const TokenForm = () => {
+const TokenForm = ({ handleClick }) => {
   const dispatch = useDispatch();
 
   const onSubmit = (values) => {
     dispatch(verifyMobileNumber(values));
+    handleClick?.();
   };
 
   return (
@@ -20,10 +22,11 @@ const TokenForm = () => {
         <form id="login_form" onSubmit={handleSubmit}>
           <Row flexDirection="column" rowGap={10}>
             <Row className={styles.loginInput}>
-              <span>Mobile Number</span>
               <InputField
+                label="Mobile Number"
                 name="phoneNumber"
                 isInputGroup
+                re
                 flexDirection="row-reverse"
                 className={styles.loginInputBox}
                 inputProps={{ placeholder: 'Enter your mobile number' }}
@@ -38,6 +41,10 @@ const TokenForm = () => {
       )}
     />
   );
+};
+
+TokenForm.propTypes = {
+  handleClick: func,
 };
 
 export default TokenForm;

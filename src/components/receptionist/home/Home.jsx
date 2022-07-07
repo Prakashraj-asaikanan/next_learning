@@ -14,15 +14,15 @@ import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import {
   getAllBookedPatient,
-  ReceptionistInfoSelector,
   UpdateCheckInPatient,
   closeHospitalForDay,
+  updateTokenStatus,
 } from '@Redux/reducers/ReceptionistInfo';
 import { useDispatch, useSelector } from 'react-redux';
 
 const RHome = () => {
   const dispatch = useDispatch();
-  const receptionistReduxValue = useSelector(ReceptionistInfoSelector);
+  const receptionistReduxValue = useSelector((state) => state.rootReducer.ReceptionistReducer);
 
   const [statusModal, setStatusModal] = useState(false);
   const [row_data, setRowData] = useState([]);
@@ -30,6 +30,7 @@ const RHome = () => {
   const [current_page, setCUrrentPage] = useState();
   const [isLoading, setLoading] = useState(true);
   const [opensnack, setOpenSnack] = useState(false);
+  const [token_status, setTokenStatus] = useState(false);
   const vertical = 'top';
   const horizontal = 'right';
   const table_column = [
@@ -112,9 +113,10 @@ const RHome = () => {
   };
 
   useEffect(() => {
-    setRowData([]);
     if (!receptionistReduxValue?.bookedPatient) {
+      setRowData([]);
       setLoading(true);
+      setStatusModal(false);
       dispatch(getAllBookedPatient(query_params));
     } else if (receptionistReduxValue?.bookedPatient) {
       setTotalPage(1);
@@ -169,6 +171,12 @@ const RHome = () => {
   ];
 
   const handleStatus = () => {
+    setTokenStatus(!token_status);
+    setStatusModal(!statusModal);
+  };
+
+  const handleCloseModal = () => {
+    setTokenStatus(!token_status);
     setStatusModal(!statusModal);
   };
 
@@ -181,6 +189,17 @@ const RHome = () => {
       hospital_id: '62b1c8b9c1cd1f96db036253',
     };
     dispatch(closeHospitalForDay(recptionist_data));
+  };
+
+  const handleUpdateTokenStatus = () => {
+    let recptionist_token_status = {
+      hospital_id: '62b1c8b9c1cd1f96db036253',
+      user_type: '2',
+      isTokenEnabled: token_status,
+    };
+    dispatch(updateTokenStatus(recptionist_token_status));
+    setStatusModal(!statusModal);
+    setOpenSnack(false);
   };
 
   return (
@@ -200,7 +219,11 @@ const RHome = () => {
           </Typography>
           <Typography variant="p" className={styles.homeTableStatus}>
             Status
-            <Toggle labelClassName={styles.homeTableToggle} handleClick={handleStatus} />
+            <Toggle
+              checked={token_status}
+              labelClassName={styles.homeTableToggle}
+              handleClick={handleStatus}
+            />
           </Typography>
         </Row>
         <Table
@@ -254,13 +277,17 @@ const RHome = () => {
           <Modal.footer>
             <Row alignItems="center" justifyContent="center" className={styles.homeModalFooterBox}>
               <Button
-                onClick={handleStatus}
+                onClick={handleCloseModal}
                 className={styles.homeModalFooterButton}
                 action="button"
               >
                 Cancel
               </Button>
-              <Button className={styles.homeModalFooterButton} action="button">
+              <Button
+                onClick={handleUpdateTokenStatus}
+                className={styles.homeModalFooterButton}
+                action="button"
+              >
                 Proceed
               </Button>
             </Row>

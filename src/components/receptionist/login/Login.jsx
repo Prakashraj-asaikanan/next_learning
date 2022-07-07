@@ -8,15 +8,16 @@ import Icon from '@UI/icon/Icon';
 import LoginBanner from '@Assets/images/login_banner.jpg';
 
 const RLogin = () => {
-  const buttonProps = {
-    className: styles.loginButton,
-  };
-
   return (
     <>
-      <Row justifyContent="space-around" alignItems="center" className={styles.login}>
+      <Row justifyContent="center" alignItems="center" className={styles.login}>
         <Col className={styles.loginBanner}>
-          <Row alignItems="center" justifyContent="center" className={styles.loginBannerBox} flexDirection="row">
+          <Row
+            alignItems="center"
+            justifyContent="center"
+            className={styles.loginBannerBox}
+            flexDirection="row"
+          >
             <Image src={LoginBanner?.src} />
           </Row>
         </Col>
@@ -24,19 +25,23 @@ const RLogin = () => {
           <Row justifyContent="center" className={styles.loginBox}>
             <Col className={styles.loginForm}>
               <Row justifyContent="center" flexDirection="row" alignItems="center" rowGap={25}>
-                
                 <Image src={CompanyLogo.src} className={styles.loginCompanylogo} />
                 <Typography variant="p" className={styles.loginText}>
                   PG Clinic
                 </Typography>
               </Row>
-              <LoginForm className={styles.loginModalForm} btnProps={buttonProps} />
+              <LoginForm
+                className={styles.loginModalForm}
+                btnProps={{
+                  className: styles.loginButton,
+                }}
+              />
             </Col>
             <Col className={styles.loginFooterBox}>
               <Row justifyContent="center" alignItems="center">
                 <Typography variant="small" className={styles.loginFooter}>
                   Powered
-                  <Icon iconName='powered_by' className={styles.loginFooterIcon} />
+                  <Icon iconName="powered_by" className={styles.loginFooterIcon} />
                 </Typography>
               </Row>
             </Col>

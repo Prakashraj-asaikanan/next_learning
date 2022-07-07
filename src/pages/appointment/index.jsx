@@ -1,7 +1,12 @@
 import Appointment from '@Components/appointment/Appointment';
+import { Container } from '@UI/layout';
 
 const AppointmentPage = () => {
-  return <Appointment />;
+  return (
+    <Container>
+      <Appointment />
+    </Container>
+  );
 };
 
 export default AppointmentPage;

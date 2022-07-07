@@ -9,6 +9,10 @@
             font-size: 13px;
             line-height: 16px;
         }
+        &-box {
+            width: 100%;
+            margin-top: 8px;
+        }
         button {
             width: 100%;
             margin-top: 30px;
@@ -23,6 +27,13 @@
             &:focus {
                 color: $white;
             }
+        }
+        label {
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 16px;
+            color: $metal;
+            padding-left: 15px;
         }
     }
 }

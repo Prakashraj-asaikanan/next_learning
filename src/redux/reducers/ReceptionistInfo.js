@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import ReceptionistService from 'src/services/ReceptionistService/GetallPatient';
 import PatientCheckINService from 'src/services/ReceptionistService/updatePatientCheckIn';
 import CloseHospitalReceptionist from 'src/services/ReceptionistService/closeHospital';
+import UpdateTokenStatus from 'src/services/ReceptionistService/updateTokenStatus';
 
 const initialState = {};
 
@@ -71,6 +72,21 @@ export const closeHospitalForDay = createAsyncThunk(
   async (data, { dispatch }) => {
     try {
       const response = await CloseHospitalReceptionist.invoke(data, options);
+      if (response) {
+        dispatch(toaster_data(response?.payload));
+      }
+    } catch (error) {
+      dispatch(toaster_data(error));
+      throw new Error(error);
+    }
+  }
+);
+
+export const updateTokenStatus = createAsyncThunk(
+  'hospital/updateTokenStatus',
+  async (data, { dispatch }) => {
+    try {
+      const response = await UpdateTokenStatus.invoke(data, options);
       if (response) {
         dispatch(toaster_data(response?.payload));
       }

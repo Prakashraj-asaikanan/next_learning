@@ -213,3 +213,34 @@
 
   @content;
 }
+
+@mixin font(
+  $fontFamily,
+  $fontSize,
+  $color,
+  $font-weight: 'normal',
+  $line-height: 'normal',
+  $letter-spacing: 'normal'
+) {
+  color: $color;
+  font-family: $fontFamily, sans-serif;
+  font-size: $fontSize;
+
+  @if $font-weight== 'normal' {
+    font-weight: normal;
+  } @else {
+    font-weight: $font-weight;
+  }
+
+  @if $line-height== 'normal' {
+    line-height: normal;
+  } @else {
+    line-height: $line-height;
+  }
+
+  @if $letter-spacing== 'normal' {
+    letter-spacing: normal;
+  } @else {
+    letter-spacing: $letter-spacing;
+  }
+}

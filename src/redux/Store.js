@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import SessionInfo from './reducers/SessionInfo';
-import ReceptionistInfo from './reducers/ReceptionistInfo';
+import rootReducer from './reducers';
 
 export const store = configureStore({
   reducer: {
-    session: SessionInfo,
-    receptionist: ReceptionistInfo,
+    rootReducer,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import VerifyPhoneNumberService from 'src/services/verifyPhoneNumberService/VerifyPhoneNumber';
 
-const initialState = {};
+export const initialState = {
+  login: {},
+};
 
-const sessionSlice = createSlice({
-  name: 'session',
+const loginSlice = createSlice({
+  name: 'login',
   initialState,
   reducers: {
     verifyMobile: (state, action) => {
@@ -17,11 +19,11 @@ const sessionSlice = createSlice({
   },
 });
 
-export const { verifyMobile, verifyOtp } = sessionSlice.actions;
+export const { verifyMobile, verifyOtp } = loginSlice.actions;
 
-export const SessionInfoSelector = (state) => state.session;
+export const loginSelector = (state) => state?.login;
 
-export default sessionSlice.reducer;
+export default loginSlice.reducer;
 
 export const verifyMobileNumber = createAsyncThunk(
   'login/verifymobilenumber',
