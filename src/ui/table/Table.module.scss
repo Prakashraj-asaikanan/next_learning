@@ -1,5 +1,4 @@
 @import "@Assets/styles/Mixins.scss";
-@import "@Assets/styles/Colors.scss";
 
 .table {
   td {
@@ -36,11 +35,6 @@
     }
     &-success {
       color: green;
-      font-size: 16px;
-      font-weight: 700;
-    }
-    &-danger {
-      color: $red;
       font-size: 16px;
       font-weight: 700;
     }

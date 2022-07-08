@@ -1,0 +1,107 @@
+@import "@Assets/styles/Colors.scss";
+@import "@Assets/styles/Mixins.scss";
+
+.token {
+  height: 100vh;
+  
+  &-card {
+   
+    &-box {
+      width: 100%;
+      height: 400px;
+      &-icon {
+        min-width: 300px;
+      }
+    }
+    &-dashline {
+        border: 1px dashed $very-light-gray;
+        width: 90%;
+    }
+    
+
+    &-dateTimeContainer{
+        padding: 5px;
+    }
+    &-parent{
+      position: relative;
+    }
+    &-child{
+      position: absolute;
+    }
+  }
+
+  &-status{
+    &-chill{
+      color:#F7A955
+    }
+  }
+
+  &-expired{
+    color: grey;
+  }
+
+  &-icon{
+    width:30px;
+    // height:30px;
+    fill:#000
+  }
+
+  &-doctorProfilePic{
+    width:70%;
+  }
+
+  &-doctorDetails {
+    width: 90%;
+  }
+
+  &-shareIcon{
+    margin-left: 40%;
+  }
+
+  &-number{
+    font-size:5rem !important;
+  }
+
+  &-title{
+    font-size:2rem !important;
+    font-weight: bold;
+  }
+
+  &-subTitle{
+    color: #8990A6;
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  &-statusText{
+    font-weight: bold;
+    font-size: 13px;
+    color: #242A31;
+    list-style-type: disc;
+    margin-left:15px
+  }
+
+  &-statusContainer{
+    border: 1px solid #CDD1E0;
+    border-radius: 5px;
+    padding: 10px;
+    width:90%
+  }
+
+  &-verticalLine{
+    display: inline-block;
+    border-left: 1px solid #ccc;
+    margin: 0 10px;
+    height: 35px;
+  }
+
+  &-paperPosition{
+    position:relative;
+  }
+  
+  &-paperChildPosition{
+    position:absolute;
+    top:40px;
+    width: 70%;
+  }
+}
