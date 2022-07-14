@@ -26,13 +26,6 @@ const prepareRequestPayload = (data) => {
  * @return {object}
  */
 const prepareResponseError = (response) => {
-  // if (!response || !response?.success) {
-  //   const erroNode = response?.errors?.[0];
-  //   return {
-  //     code: erroNode?.code,
-  //     message: erroNode?.message,
-  //   };
-  // }
   if (!response) {
     const erroNode = response?.errors?.[0];
     return {
@@ -45,10 +38,10 @@ const prepareResponseError = (response) => {
 };
 
 /**
- * UpdateTokenStatus Class
- * @returns {*} UpdateTokenStatus class instance
+ * UpdatePatientCheckInService Class
+ * @returns {*} UpdatePatientCheckInService class instance
  */
-class UpdateTokenStatus extends ApiService.Service {
+class UpdatePatientCheckInService extends ApiService.Service {
   constructor() {
     super({
       method: ApiService.methods.PUT,
@@ -59,4 +52,4 @@ class UpdateTokenStatus extends ApiService.Service {
   }
 }
 
-export default new UpdateTokenStatus();
+export default new UpdatePatientCheckInService();

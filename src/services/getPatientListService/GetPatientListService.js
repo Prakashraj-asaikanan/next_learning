@@ -13,13 +13,6 @@ const prepareEndPoint = () => RestEndpoints.RECEPTIONIST.GET_ALL_PATIENT;
  * @return {object}
  */
 const prepareResponseError = (response) => {
-  // if (!response || !response?.success) {
-  //   const erroNode = response?.errors?.[0];
-  //   return {
-  //     code: erroNode?.code,
-  //     message: erroNode?.message,
-  //   };
-  // }
   if (!response) {
     const erroNode = response?.errors?.[0];
     return {
@@ -31,10 +24,10 @@ const prepareResponseError = (response) => {
 };
 
 /**
- * GetAllPatientService Class
+ * GetPatientListService Class
  * @returns {*} GetAllPatientService class instance
  */
-class GetAllPatientService extends ApiService.Service {
+class GetPatientListService extends ApiService.Service {
   constructor() {
     super({
       method: ApiService.methods.GET,
@@ -44,4 +37,4 @@ class GetAllPatientService extends ApiService.Service {
   }
 }
 
-export default new GetAllPatientService();
+export default new GetPatientListService();
