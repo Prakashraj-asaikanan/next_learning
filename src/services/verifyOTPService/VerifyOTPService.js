@@ -5,7 +5,7 @@ import ApiService from '../apiService/ApiService';
  * Constructs api endpoint url
  * @returns {string} - Endpoint url
  */
-const prepareEndPoint = () => RestEndpoints.RECEPTIONIST.UPDATE_TOKEN_STATUS;
+const prepareEndPoint = () => RestEndpoints.LOGIN.VERIFY_OTP;
 
 /**
  * Constructs request payload
@@ -14,9 +14,8 @@ const prepareEndPoint = () => RestEndpoints.RECEPTIONIST.UPDATE_TOKEN_STATUS;
  */
 const prepareRequestPayload = (data) => {
   return {
-    hospital_id: data?.hospital_id,
-    user_type: data?.user_type,
-    isTokenEnabled: data?.isTokenEnabled,
+    otpToken: data?.Otp,
+    id: data?.id,
   };
 };
 
@@ -26,32 +25,24 @@ const prepareRequestPayload = (data) => {
  * @return {object}
  */
 const prepareResponseError = (response) => {
-  // if (!response || !response?.success) {
-  //   const erroNode = response?.errors?.[0];
-  //   return {
-  //     code: erroNode?.code,
-  //     message: erroNode?.message,
-  //   };
-  // }
   if (!response) {
-    const erroNode = response?.errors?.[0];
     return {
-      code: erroNode ? erroNode?.code : 400,
-      status: 'error',
+      code: response?.code,
       message: response?.message,
     };
   }
+
   return false;
 };
 
 /**
- * UpdateTokenStatus Class
- * @returns {*} UpdateTokenStatus class instance
+ * VerifyOTPService Class
+ * @returns {*} VerifyOTPService class instance
  */
-class UpdateTokenStatus extends ApiService.Service {
+class VerifyOTPService extends ApiService.Service {
   constructor() {
     super({
-      method: ApiService.methods.PUT,
+      method: ApiService.methods.POST,
       getEndPoint: prepareEndPoint,
       getRequestPayload: prepareRequestPayload,
       getResponseError: prepareResponseError,
@@ -59,4 +50,4 @@ class UpdateTokenStatus extends ApiService.Service {
   }
 }
 
-export default new UpdateTokenStatus();
+export default new VerifyOTPService();

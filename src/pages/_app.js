@@ -1,6 +1,6 @@
 import '@Assets/styles/Global.scss';
 import { Provider } from 'react-redux';
-import { store } from 'src/redux/Store';
+import { store } from '@Redux/index';
 import { func, node, object, oneOfType } from 'prop-types';
 
 function MyApp({ Component, pageProps }) {
