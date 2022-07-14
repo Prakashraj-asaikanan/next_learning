@@ -35,7 +35,8 @@ export const ReceptionistInfoSelector = (state) => state.receptionist;
 export default receptionistSlice.reducer;
 
 let options = {
-  'x-auth-token':`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldmFraUBnbWFpbC5jb20iLCJpYXQiOjE2NTY0ODMxNzAsImV4cCI6MTY2MDA4MzE3MH0.kKwLrNFV5Wn5mjBVUBEYvKYqeFYWm62hP-ZxxPqhzfI`,
+  'x-auth-token':
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldmFraUBnbWFpbC5jb20iLCJpYXQiOjE2NTY0ODMxNzAsImV4cCI6MTY2MDA4MzE3MH0.kKwLrNFV5Wn5mjBVUBEYvKYqeFYWm62hP-ZxxPqhzfI',
 };
 
 export const getAllBookedPatient = createAsyncThunk(

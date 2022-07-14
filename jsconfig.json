@@ -13,7 +13,7 @@
       "@Hooks/*": ["src/hooks/*"],
       "@UI/*": ["src/ui/*"],
       "@Configs/*": ["src/configs/*"],
-      "@Service/*": ["src/service/*"],
+      "@Services/*": ["src/services/*"],
       "@Redux/*": ["src/redux/*"]
     },
     "strict": true,

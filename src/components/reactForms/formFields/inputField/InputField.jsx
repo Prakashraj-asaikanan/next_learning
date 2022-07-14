@@ -1,8 +1,8 @@
 import Input from '@UI/input/Input';
 import InputGroup from '@UI/inputGroup/InputGroup';
 import Typography from '@UI/typography/Typography';
-import { func, object, string } from 'prop-types';
 import dynamic from 'next/dynamic';
+import { bool, func, object, string } from 'prop-types';
 import { Field } from 'react-final-form';
 import styles from './InputField.module.scss';
 
@@ -43,43 +43,40 @@ InputComp.defaultProps = {
  * @returns {*}
  * @constructor
  */
-const InputField = ({ name, label, validate, className, parse, maskProps, ...restProps }) => {
+const InputField = ({ name, validate, className, parse, maskProps, ...restProps }) => {
   return (
-    <>
-      <label>{label}</label>
-      <Field
-        name={name}
-        validate={validate}
-        format={(value) => value?.trim()}
-        formatOnBlur
-        {...(parse && { parse: parse })}
-      >
-        {({ input, meta }) => (
-          <div className={`${className} ${meta.touched && meta.error ? styles.error : ''}`}>
-            {maskProps ? (
-              <InputMask
-                {...input}
-                {...maskProps}
-                onChange={(e) => {
-                  maskProps?.onChange?.(e);
-                  input?.onChange?.(e);
-                  restProps?.onChange?.(e);
-                }}
-              >
-                {(maskProps) => <InputComp {...maskProps} restProps={restProps} />}
-              </InputMask>
-            ) : (
-              <InputComp {...input} restProps={restProps} />
-            )}
-            {meta.touched && meta.error && (
-              <Typography variant="label" theme="error">
-                *{meta.error}
-              </Typography>
-            )}
-          </div>
-        )}
-      </Field>
-    </>
+    <Field
+      name={name}
+      validate={validate}
+      format={(value) => value?.trim()}
+      formatOnBlur
+      {...(parse && { parse: parse })}
+    >
+      {({ input, meta }) => (
+        <div className={`${className} ${meta.touched && meta.error ? styles.error : ''}`}>
+          {maskProps ? (
+            <InputMask
+              {...input}
+              {...maskProps}
+              onChange={(e) => {
+                maskProps?.onChange?.(e);
+                input?.onChange?.(e);
+                restProps?.onChange?.(e);
+              }}
+            >
+              {(maskProps) => <InputComp {...maskProps} restProps={restProps} />}
+            </InputMask>
+          ) : (
+            <InputComp {...input} restProps={restProps} />
+          )}
+          {meta.touched && meta.error && (
+            <Typography variant="label" theme="error">
+              *{meta.error}
+            </Typography>
+          )}
+        </div>
+      )}
+    </Field>
   );
 };
 
@@ -87,14 +84,15 @@ InputField.propTypes = {
   className: string,
   name: string.isRequired,
   validate: func,
+  isInputGroup: bool,
   maskProps: object,
   parse: func,
-  label: string,
 };
 
 InputField.defaultProps = {
   className: '',
   validate: null,
+  isInputGroup: false,
   maskProps: null,
   parse: null,
 };

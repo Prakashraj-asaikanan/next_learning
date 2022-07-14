@@ -17,12 +17,12 @@ import {
   UpdateCheckInPatient,
   closeHospitalForDay,
   updateTokenStatus,
-} from '@Redux/reducers/ReceptionistInfo';
+} from '@Redux/Receptionist';
 import { useDispatch, useSelector } from 'react-redux';
 
 const RHome = () => {
   const dispatch = useDispatch();
-  const receptionistReduxValue = useSelector((state) => state.rootReducer.ReceptionistReducer);
+  const receptionistReduxValue = useSelector((state) => state.receptionist);
 
   const [statusModal, setStatusModal] = useState(false);
   const [row_data, setRowData] = useState([]);

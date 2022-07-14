@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers';
+import Login from './Login';
+import Receptionist from './Receptionist';
 
 export const store = configureStore({
   reducer: {
-    rootReducer,
+    login: Login,
+    receptionist: Receptionist,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>

@@ -5,7 +5,7 @@ import ApiService from '../apiService/ApiService';
  * Constructs api endpoint url
  * @returns {string} - Endpoint url
  */
-const prepareEndPoint = () => RestEndpoints.LOGIN.VERIFY_PHONE;
+const prepareEndPoint = () => RestEndpoints.LOGIN.VERIFY_OTP;
 
 /**
  * Constructs request payload
@@ -14,7 +14,8 @@ const prepareEndPoint = () => RestEndpoints.LOGIN.VERIFY_PHONE;
  */
 const prepareRequestPayload = (data) => {
   return {
-    phone: data?.phoneNumber,
+    otpToken: data?.Otp,
+    id: data?.id,
   };
 };
 
@@ -35,10 +36,10 @@ const prepareResponseError = (response) => {
 };
 
 /**
- * VerifyPhoneNumberService Class
- * @returns {*} VerifyPhoneNumberService class instance
+ * VerifyOTPService Class
+ * @returns {*} VerifyOTPService class instance
  */
-class VerifyPhoneNumberService extends ApiService.Service {
+class VerifyOTPService extends ApiService.Service {
   constructor() {
     super({
       method: ApiService.methods.POST,
@@ -49,4 +50,4 @@ class VerifyPhoneNumberService extends ApiService.Service {
   }
 }
 
-export default new VerifyPhoneNumberService();
+export default new VerifyOTPService();
