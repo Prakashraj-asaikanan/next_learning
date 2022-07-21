@@ -5,7 +5,7 @@ import ApiService from '../apiService/ApiService';
  * Constructs api endpoint url
  * @returns {string} - Endpoint url
  */
-const prepareEndPoint = () => RestEndpoints.LOGIN.VERIFY_PHONE;
+const prepareEndPoint = () => RestEndpoints.RECEPTIONIST.UPDATE_TOKEN_STATUS;
 
 /**
  * Constructs request payload
@@ -14,7 +14,9 @@ const prepareEndPoint = () => RestEndpoints.LOGIN.VERIFY_PHONE;
  */
 const prepareRequestPayload = (data) => {
   return {
-    phone: data?.phoneNumber,
+    hospital_id: data?.hospital_id,
+    user_type: data?.user_type,
+    isTokenEnabled: data?.isTokenEnabled,
   };
 };
 
@@ -25,23 +27,24 @@ const prepareRequestPayload = (data) => {
  */
 const prepareResponseError = (response) => {
   if (!response) {
+    const erroNode = response?.errors?.[0];
     return {
-      code: response?.code,
+      code: erroNode ? erroNode?.code : 400,
+      status: 'error',
       message: response?.message,
     };
   }
-
   return false;
 };
 
 /**
- * VerifyPhoneNumberService Class
- * @returns {*} VerifyPhoneNumberService class instance
+ * UpdatePatientCheckInService Class
+ * @returns {*} UpdatePatientCheckInService class instance
  */
-class VerifyPhoneNumberService extends ApiService.Service {
+class UpdatePatientCheckInService extends ApiService.Service {
   constructor() {
     super({
-      method: ApiService.methods.POST,
+      method: ApiService.methods.PUT,
       getEndPoint: prepareEndPoint,
       getRequestPayload: prepareRequestPayload,
       getResponseError: prepareResponseError,
@@ -49,4 +52,4 @@ class VerifyPhoneNumberService extends ApiService.Service {
   }
 }
 
-export default new VerifyPhoneNumberService();
+export default new UpdatePatientCheckInService();

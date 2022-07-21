@@ -24,13 +24,7 @@ const prepareRequestPayload = (data) => {
  * @return {object}
  */
 const prepareResponseError = (response) => {
-  // if (!response || !response?.success) {
-  //   const erroNode = response?.errors?.[0];
-  //   return {
-  //     code: erroNode?.code,
-  //     message: erroNode?.message,
-  //   };
-  // }
+  //Don't check static message da..
   if (!response || response?.message === 'No patient details found') {
     const erroNode = response?.errors?.[0];
     return {

@@ -27,13 +27,6 @@ const prepareRequestPayload = (data) => {
  * @return {object}
  */
 const prepareResponseError = (response) => {
-  // if (!response || !response?.success) {
-  //   const erroNode = response?.errors?.[0];
-  //   return {
-  //     code: erroNode?.code,
-  //     message: erroNode?.message,
-  //   };
-  // }
   if (!response || response?.message === 'No patient details found') {
     const erroNode = response?.errors?.[0];
     return {
@@ -46,10 +39,10 @@ const prepareResponseError = (response) => {
 };
 
 /**
- * UpdatePatientCheckIn Class
- * @returns {*} UpdatePatientCheckIn class instance
+ * UpdatePatientCheckInService Class
+ * @returns {*} UpdatePatientCheckInService class instance
  */
-class UpdatePatientCheckIn extends ApiService.Service {
+class UpdatePatientCheckInService extends ApiService.Service {
   constructor() {
     super({
       method: ApiService.methods.PUT,
@@ -60,4 +53,4 @@ class UpdatePatientCheckIn extends ApiService.Service {
   }
 }
 
-export default new UpdatePatientCheckIn();
+export default new UpdatePatientCheckInService();

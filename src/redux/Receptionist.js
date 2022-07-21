@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import ReceptionistService from 'src/services/ReceptionistService/GetallPatient';
-import PatientCheckINService from 'src/services/ReceptionistService/updatePatientCheckIn';
-import CloseHospitalReceptionist from 'src/services/ReceptionistService/closeHospital';
-import UpdateTokenStatus from 'src/services/ReceptionistService/updateTokenStatus';
+import GetAllPatientService from '@Services/getPatientListService/GetPatientListService';
+import UpdatePatientCheckInService from '@Services/updatePatientCheckInService/UpdatePatientCheckInService';
+import CloseHospitalService from '@Services/closeHospitalService/CloseHospitalService';
+import UpdateTokenStatusService from '@Services/updateTokenStatusService/UpdateTokenStatusService';
 
 const initialState = {};
 
@@ -35,14 +35,15 @@ export const ReceptionistInfoSelector = (state) => state.receptionist;
 export default receptionistSlice.reducer;
 
 let options = {
-  'x-auth-token':`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldmFraUBnbWFpbC5jb20iLCJpYXQiOjE2NTY0ODMxNzAsImV4cCI6MTY2MDA4MzE3MH0.kKwLrNFV5Wn5mjBVUBEYvKYqeFYWm62hP-ZxxPqhzfI`,
+  'x-auth-token':
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRldmFraUBnbWFpbC5jb20iLCJpYXQiOjE2NTY0ODMxNzAsImV4cCI6MTY2MDA4MzE3MH0.kKwLrNFV5Wn5mjBVUBEYvKYqeFYWm62hP-ZxxPqhzfI',
 };
 
 export const getAllBookedPatient = createAsyncThunk(
   'hospital/getAllBookedToken',
   async (data, { dispatch }) => {
     try {
-      const response = await ReceptionistService.invoke(data, options);
+      const response = await GetAllPatientService.invoke(data, options);
       if (response) {
         dispatch(getallpatient(response?.payload));
       }
@@ -56,7 +57,7 @@ export const UpdateCheckInPatient = createAsyncThunk(
   'hospital/updateCheckin',
   async (data, { dispatch }) => {
     try {
-      const response = await PatientCheckINService.invoke(data, options);
+      const response = await UpdatePatientCheckInService.invoke(data, options);
       if (response) {
         dispatch(toaster_data(response?.payload));
       }
@@ -71,7 +72,7 @@ export const closeHospitalForDay = createAsyncThunk(
   'hospital/closeHospital',
   async (data, { dispatch }) => {
     try {
-      const response = await CloseHospitalReceptionist.invoke(data, options);
+      const response = await CloseHospitalService.invoke(data, options);
       if (response) {
         dispatch(toaster_data(response?.payload));
       }
@@ -86,7 +87,7 @@ export const updateTokenStatus = createAsyncThunk(
   'hospital/updateTokenStatus',
   async (data, { dispatch }) => {
     try {
-      const response = await UpdateTokenStatus.invoke(data, options);
+      const response = await UpdateTokenStatusService.invoke(data, options);
       if (response) {
         dispatch(toaster_data(response?.payload));
       }

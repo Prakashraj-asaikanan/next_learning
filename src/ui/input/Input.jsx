@@ -1,5 +1,4 @@
-import { bool, func, number, oneOfType, string } from 'prop-types';
-import { useEffect, useState } from 'react';
+import { bool, func, number, object, oneOfType, string } from 'prop-types';
 import { Row } from '../layout';
 import styles from './Input.module.scss';
 
@@ -8,6 +7,7 @@ const Input = (props) => {
     autoComplete,
     className,
     disabled,
+    forwardRef,
     id,
     label,
     maxLength,
@@ -24,17 +24,6 @@ const Input = (props) => {
     tabIndex,
   } = props;
 
-  const [textValue, setTextValue] = useState(value);
-
-  const handleChange = (event) => {
-    onChange?.(event);
-    setTextValue(event?.target?.value);
-  };
-
-  useEffect(() => {
-    setTextValue(value);
-  }, [value]);
-
   const inputClass = [
     styles.textboxInput,
     value ? styles.textboxInputToggle : '',
@@ -49,17 +38,18 @@ const Input = (props) => {
         autoComplete={autoComplete}
         className={inputClass}
         disabled={disabled}
+        {...(forwardRef && { ref: forwardRef })}
         id={id}
         maxLength={maxLength}
         minLength={minLength}
         name={name}
         onBlur={onBlur}
-        onChange={handleChange}
+        onChange={onChange}
         onFocus={onFocus}
         onKeyUp={onKeyUp}
-        placeholder={!label ? placeholder : ''}
+        placeholder={placeholder}
         type={type}
-        value={textValue}
+        value={value}
         aria-label={ariaLabel}
         tabIndex={tabIndex}
       />
@@ -72,10 +62,12 @@ const Input = (props) => {
   );
 };
 
+// Perform Prop Validation
 Input.propTypes = {
   autoComplete: string,
   className: string,
   disabled: bool,
+  forwardRef: oneOfType([func, object]),
   id: string,
   label: string,
   maxLength: number,
@@ -92,10 +84,12 @@ Input.propTypes = {
   tabIndex: number,
 };
 
+// Declare default props
 Input.defaultProps = {
   autoComplete: 'off',
   className: '',
   disabled: false,
+  forwardRef: null,
   id: null,
   label: '',
   maxLength: 100,
@@ -112,4 +106,5 @@ Input.defaultProps = {
   tabIndex: 0,
 };
 
+// Export the component
 export default Input;
