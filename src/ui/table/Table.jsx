@@ -1,4 +1,4 @@
-import { array, bool, func } from 'prop-types';
+import { array, bool } from 'prop-types';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -10,11 +10,12 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@UI/typography/Typography';
 import styles from './Table.module.scss';
 import Button from '@UI/button/Button';
+import LinkButton from '@UI/linkButton/LinkButton';
 import { Row } from '@UI/layout';
 import Icon from '@UI/icon/Icon';
 import Toggle from '@UI/toggle/Toggle';
 
-const RTable = ({ columns, rows, isLoading, handleUpdate }) => {
+const RTable = ({ columns, rows, isLoading }) => {
   const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: '#F7A955',
@@ -62,57 +63,80 @@ const RTable = ({ columns, rows, isLoading, handleUpdate }) => {
                     >
                       {columns?.map((column) => {
                         const value = row[column.id];
-                        const flag = row['flag'];
                         return (
                           <>
-                            {column.id != 'flag' && (
-                              <TableCell
-                                key={column.id}
-                                align={column.align}
-                                className={column?.isSticky && styles.tableStickyRow}
+                            <TableCell
+                              key={column.id}
+                              align={column.align}
+                              className={column?.isSticky && styles.tableStickyRow}
+                            >
+                              <LinkButton
+                                onClick={
+                                  typeof value?.onClick === 'function' &&
+                                  (() => value?.onClick(row))
+                                }
+                                className={
+                                  value?.className
+                                    ? `${styles.tableStickyRowText} ${value?.className}`
+                                    : styles.tableStickyRowText
+                                }
                               >
-                                {column.id === 'action' && (flag === 0 || flag === 3) && (
-                                  <Typography
-                                    variant={column?.variant ? column.variant : 'p'}
-                                    className={
-                                      flag === 0 ? styles.tableTextSuccess : styles.tableTextDanger
-                                    }
-                                  >
-                                    <Icon iconName={flag === 0 ? 'success' : 'close_all'} />
-                                    &nbsp;{flag === 0 ? 'Consulted' : 'Not Consulted'}
+                                {value?.icon ? (
+                                  <>
+                                    <Icon
+                                      iconName={value?.icon}
+                                      className={styles.tableButtonIcon}
+                                    />
+                                    &nbsp;&nbsp;{value?.title}
+                                  </>
+                                ) : value?.title ? (
+                                  value?.title
+                                ) : (
+                                  value
+                                )}
+                                {/* {value?.title ? value?.title : value} */}
+                              </LinkButton>
+                              {/* {column.id === 'action' && (flag === 0 || flag === 3) && (
+                                <Typography
+                                  variant={column?.variant ? column.variant : 'p'}
+                                  className={
+                                    flag === 0 ? styles.tableTextSuccess : styles.tableTextDanger
+                                  }
+                                >
+                                  <Icon iconName={flag === 0 ? 'success' : 'close_all'} />
+                                  &nbsp;{flag === 0 ? 'Consulted' : 'Not Consulted'}
+                                </Typography>
+                              )}
+                              {column.id === 'action' && flag === 1 && (
+                                <Button onClick={() => handleUpdate(row)}>
+                                  <Icon iconName="login" className={styles.tableButtonIcon} />
+                                  &nbsp;&nbsp;Check In
+                                </Button>
+                              )}
+                              {column.id === 'action' && flag === 2 && (
+                                <Row
+                                  justifyContent="space-between"
+                                  alignItems="center"
+                                  className={styles.tableCheckbox}
+                                >
+                                  <Typography variant="p" className={styles.tableUppercase}>
+                                    {value}
                                   </Typography>
-                                )}
-                                {column.id === 'action' && flag === 1 && (
-                                  <Button onClick={() => handleUpdate(row)}>
-                                    <Icon iconName="login" className={styles.tableButtonIcon} />
-                                    &nbsp;&nbsp;Check In
-                                  </Button>
-                                )}
-                                {column.id === 'action' && flag === 2 && (
-                                  <Row
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                    className={styles.tableCheckbox}
-                                  >
-                                    <Typography variant="p" className={styles.tableUppercase}>
-                                      {value}
-                                    </Typography>
-                                    &nbsp;&nbsp;
-                                    <Toggle checked={value === 'active' ? true : false} />
-                                  </Row>
-                                )}
-                                {column.id != 'action' && (
-                                  <Typography
-                                    variant={column?.variant ? column.variant : 'p'}
-                                    className={`${styles.tableText}`}
-                                  >
-                                    {column.format && typeof value === 'number'
-                                      ? column.format(value)
-                                      : value}
-                                  </Typography>
-                                )}
-                              </TableCell>
-                            )}
+                                  &nbsp;&nbsp;
+                                  <Toggle checked={value === 'active' ? true : false} />
+                                </Row>
+                              )}
+                              {column.id != 'action' && (
+                                <Typography
+                                  variant={column?.variant ? column.variant : 'p'}
+                                  className={`${styles.tableText}`}
+                                >
+                                  {column.format && typeof value === 'number'
+                                    ? column.format(value)
+                                    : value}
+                                </Typography>
+                              )} */}
+                            </TableCell>
                           </>
                         );
                       })}
@@ -141,7 +165,6 @@ RTable.propTypes = {
   columns: array,
   rows: array,
   isLoading: bool,
-  handleUpdate: func,
 };
 
 export default RTable;

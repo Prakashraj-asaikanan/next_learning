@@ -19,6 +19,7 @@ import {
   updateTokenStatus,
 } from '@Redux/reducers/ReceptionistInfo';
 import { useDispatch, useSelector } from 'react-redux';
+import mock_data from '../../../mock/data.json';
 
 const RHome = () => {
   const dispatch = useDispatch();
@@ -72,12 +73,6 @@ const RHome = () => {
       isactive: true,
       minWidth: 130,
     },
-    {
-      id: 'flag',
-      label: 'Flag',
-      align: 'center',
-      isactive: false,
-    },
   ];
 
   const handleRowData = (rows) => {
@@ -113,24 +108,25 @@ const RHome = () => {
   };
 
   useEffect(() => {
-    if (!receptionistReduxValue?.bookedPatient) {
-      setRowData([]);
-      setLoading(true);
-      setStatusModal(false);
-      dispatch(getAllBookedPatient(query_params));
-    } else if (receptionistReduxValue?.bookedPatient) {
-      setTotalPage(1);
-      setCUrrentPage(1);
-      setLoading(false);
-      handleRowData(receptionistReduxValue?.bookedPatient);
-    }
-    if (
-      (receptionistReduxValue?.toaster_data?.status && !opensnack) ||
-      (receptionistReduxValue?.toaster_data?.status && !opensnack)
-    ) {
-      setOpenSnack(true);
-    }
-  }, [receptionistReduxValue]);
+    // if (!receptionistReduxValue?.bookedPatient) {
+    //   setRowData([]);
+    //   setLoading(true);
+    //   setStatusModal(false);
+    //   dispatch(getAllBookedPatient(query_params));
+    // } else if (receptionistReduxValue?.bookedPatient) {
+    //   setTotalPage(1);
+    //   setCUrrentPage(1);
+    //   setLoading(false);
+    //   handleRowData(receptionistReduxValue?.bookedPatient);
+    // }
+    // if (
+    //   (receptionistReduxValue?.toaster_data?.status && !opensnack) ||
+    //   (receptionistReduxValue?.toaster_data?.status && !opensnack)
+    // ) {
+    //   setOpenSnack(true);
+    // }
+    handleRowData(mock_data.patient_token_list);
+  }, []);
 
   const createdData = (
     name,
@@ -142,19 +138,34 @@ const RHome = () => {
     isCheckedIn,
     isConsulted
   ) => {
-    let flag;
+    let action;
     if (!isCheckedIn && !isConsulted) {
-      flag = 1;
+      action = {
+        title: 'Check In',
+        className: `${styles.homeTableButtonCheckin}`,
+        onClick: (patient) => handleCheckinPatient(patient),
+        icon: 'login',
+      };
     } else if (isCheckedIn && isConsulted) {
-      flag = 0;
+      action = {
+        title: 'Consulted',
+        className: `${styles.homeTableTextSuccess}`,
+        icon: 'success',
+      };
     } else if (isCheckedIn && !isConsulted) {
-      flag = 1;
+      action = {
+        title: 'waiting',
+        className: `${styles.homeTableButtonWaiting}`,
+        // onClick: (patient) => handleCheckinPatient(patient),
+        // icon: 'login',
+      };
     }
-    return { name, patient_id, phone, age, doctor_name, token_no, isCheckedIn, isConsulted, flag };
+    return { name, patient_id, phone, age, doctor_name, token_no, action };
   };
 
   const handleCheckinPatient = (patient) => {
-    dispatch(UpdateCheckInPatient({ ...patient, ...query_params }));
+    console.log(patient)
+    // dispatch(UpdateCheckInPatient({ ...patient, ...query_params }));
   };
 
   const breadCumb_data = [
@@ -226,12 +237,7 @@ const RHome = () => {
             />
           </Typography>
         </Row>
-        <Table
-          columns={table_column}
-          rows={row_data}
-          isLoading={isLoading}
-          handleUpdate={handleCheckinPatient}
-        />
+        <Table columns={table_column} rows={row_data} isLoading={isLoading} />
         <Row
           className={styles.homeTableFooter}
           flexDirection="row"
