@@ -17,9 +17,12 @@ import {
   UpdateCheckInPatient,
   closeHospitalForDay,
   updateTokenStatus,
+  updateConsultedDetails,
 } from '@Redux/Receptionist';
 import { useDispatch, useSelector } from 'react-redux';
-import mock_data from '../../../mock/data.json';
+import authenticatedRoute from '@Components/AuthenticatedRoute';
+// import { getCookie } from '@Utils/Cookies';
+// import mock_data from '../../../mock/data.json';
 
 const RHome = () => {
   const dispatch = useDispatch();
@@ -103,30 +106,27 @@ const RHome = () => {
   });
 
   let query_params = {
-    hospital_id: '62bdda483835304c69be8ab3',
-    doctor_id: '62bdda703835304c69be8ab5',
+    hospital_id: '62d97bd4fc94648969e514b9',
+    doctor_id: '62d9a0cc0d9cb05a59d45403',
   };
 
   useEffect(() => {
-    // if (!receptionistReduxValue?.bookedPatient) {
-    //   setRowData([]);
-    //   setLoading(true);
-    //   setStatusModal(false);
-    //   dispatch(getAllBookedPatient(query_params));
-    // } else if (receptionistReduxValue?.bookedPatient) {
-    //   setTotalPage(1);
-    //   setCUrrentPage(1);
-    //   setLoading(false);
-    //   handleRowData(receptionistReduxValue?.bookedPatient);
-    // }
-    // if (
-    //   (receptionistReduxValue?.toaster_data?.status && !opensnack) ||
-    //   (receptionistReduxValue?.toaster_data?.status && !opensnack)
-    // ) {
-    //   setOpenSnack(true);
-    // }
-    handleRowData(mock_data.patient_token_list);
-  }, []);
+    if (!receptionistReduxValue?.bookedPatient) {
+      setRowData([]);
+      setLoading(true);
+      setStatusModal(false);
+      dispatch(getAllBookedPatient(query_params));
+    } else if (receptionistReduxValue?.bookedPatient) {
+      setTotalPage(1);
+      setCUrrentPage(1);
+      setLoading(false);
+      handleRowData(receptionistReduxValue?.bookedPatient);
+    }
+    if (receptionistReduxValue?.toaster_data?.status && !opensnack) {
+      setOpenSnack(true);
+    }
+    // handleRowData(mock_data.patient_token_list);
+  }, [receptionistReduxValue]);
 
   const createdData = (
     name,
@@ -143,7 +143,7 @@ const RHome = () => {
       action = {
         title: 'Check In',
         className: `${styles.homeTableButtonCheckin}`,
-        onClick: (patient) => handleCheckinPatient(patient),
+        onClick: (patient) => handleCheckinPatient(patient, 'ischecked'),
         icon: 'login',
       };
     } else if (isCheckedIn && isConsulted) {
@@ -156,16 +156,24 @@ const RHome = () => {
       action = {
         title: 'waiting',
         className: `${styles.homeTableButtonWaiting}`,
-        // onClick: (patient) => handleCheckinPatient(patient),
-        // icon: 'login',
+        onClick: (patient) => handleCheckinPatient(patient, 'isconsulted'),
       };
     }
     return { name, patient_id, phone, age, doctor_name, token_no, action };
   };
 
-  const handleCheckinPatient = (patient) => {
-    console.log(patient)
-    // dispatch(UpdateCheckInPatient({ ...patient, ...query_params }));
+  const handleCheckinPatient = (patient, type) => {
+    if (type === 'ischecked') {
+      dispatch(UpdateCheckInPatient({ ...patient, ...query_params }));
+    } else if (type === 'isconsulted') {
+      let patient_details = {
+        patient_id: patient.patient_id,
+        hospital_id: '62d97bd4fc94648969e514b9',
+        doctor_id: '62d9a0cc0d9cb05a59d45403',
+        isConsulted: true,
+      };
+      dispatch(updateConsultedDetails({ ...patient_details, ...query_params }));
+    }
   };
 
   const breadCumb_data = [
@@ -197,14 +205,14 @@ const RHome = () => {
 
   const handleClick = () => {
     let recptionist_data = {
-      hospital_id: '62b1c8b9c1cd1f96db036253',
+      hospital_id: '62d97bd4fc94648969e514b9',
     };
     dispatch(closeHospitalForDay(recptionist_data));
   };
 
   const handleUpdateTokenStatus = () => {
     let recptionist_token_status = {
-      hospital_id: '62b1c8b9c1cd1f96db036253',
+      hospital_id: '62d97bd4fc94648969e514b9',
       user_type: '2',
       isTokenEnabled: token_status,
     };
@@ -321,4 +329,4 @@ const RHome = () => {
   );
 };
 
-export default RHome;
+export default authenticatedRoute(RHome, { pathAfterFailure: '/receptionist/login' });

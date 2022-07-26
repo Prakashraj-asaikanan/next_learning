@@ -6,27 +6,29 @@ import LinkButton from '@UI/linkButton/LinkButton';
 import { func, shape, string } from 'prop-types';
 import { Form } from 'react-final-form';
 import Input from '@UI/input/Input';
-//import FieldValidator, { email, required } from '../helpers/FieldValidator';
+// import FieldValidator, { email, required } from '../helpers/FieldValidator';
 
 import styles from './LoginForm.module.scss';
 import Typography from '@UI/typography/Typography';
 
-const LoginForm = ({ btnProps, className, handleForgetPasswordClick, loginButtonLabel }) => {
-  const onSubmit = async ({ emailAddress, password }) => {
-    onSubmit?.(emailAddress, password);
-  };
-
+const LoginForm = ({
+  btnProps,
+  className,
+  handleForgetPasswordClick,
+  loginButtonLabel,
+  onSubmit,
+}) => {
   return (
     <Form
       onSubmit={onSubmit}
-      render={({ handleSubmit, submitting }) => (
+      render={({ handleSubmit, submitting, values }) => (
         <form id="login_form" onSubmit={handleSubmit}>
           <Row className={className} flexDirection="column" rowGap={10}>
             <InputField
-              name="userid"
+              name="emailAddress"
               label="User Id*"
               // validate={FieldValidator([required(), email()], 'email address')}
-              id="login_userid"
+              id="login_emailAddress"
               placeholder="enter your user id"
             />
             <PasswordField
